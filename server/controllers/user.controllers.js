@@ -79,7 +79,7 @@ const register = async (req, res, next) => {
 
 
     res.status(200).json({
-        sucess: true,
+        success: true,
         message: true,
         message: 'user registerd sucessfully',
         user
@@ -96,14 +96,18 @@ const login = async (req, res, next) => {
         }
         const user = await User.findOne({ email }).select('+password');
         if (!user || !user.comparePassword(password)) {
-            return next(new AppError('email and password are not vallid', 400))
+            return next(new AppError('User with given email does not exist', 400))
+        }
+        const match=await user.comparePassword(password);
+        if(!match){
+            return next(new AppError("Password does not match",400))
         }
         const token = await user.generateJWTToken();
         user.password = undefined;
 
         res.cookie('token', token, cookieOptions);
         res.status(200).json({
-            sucess: true,
+            success: true,
             message: "user login sucessfully",
             user  //
         });
@@ -128,7 +132,7 @@ const logout = (req, res) => {
         httpOnly: true
     });
     res.status(200).json({
-        sucess: true,
+        success: true,
         message: 'user log out sucessfully'
     });
 
@@ -170,7 +174,7 @@ const forgotPassword = async (req, res, next) => {
     try {
         await sendEmail(email, subject, message);
         res.status(200).json({
-            sucess: true,
+            success: true,
             message: `reset password token has been sent to ${email} sucesfully`
         })
     } catch (error) {
@@ -211,7 +215,7 @@ const resetPassword = async (req, res) => {
     user.save();
 
     res.status(200).json({
-        sucess: true,
+        success: true,
         message: 'password changed sucessfully'
     })
 
@@ -251,7 +255,7 @@ const changePassword = async (req, res, next) => {
     await user.save();
     user.password = undefined;
     res.status(200).json({
-        sucess: true,
+        success: true,
         message: 'password changed sucessfully'
 
     })
@@ -305,7 +309,7 @@ const updateUser = async (req, res) => {
     await user.save();
 
     res.status(200).json({
-        sucess: true,
+        success: true,
         message: 'user details update sucessfully'
 
     });
