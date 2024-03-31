@@ -15,7 +15,7 @@ function App() {
       <Route path="/signup" element={<Signup />}></Route>
       <Route path="/user/profile" element={<Profile />}></Route>
       <Route path="/user/editprofile" element={<EditProfile />}></Route>
-      <Route path="/store" element={<CollectionCard />}></Route>
+      <Route path="/custom-clothing" element={<CollectionCard />}></Route>
     </Routes>
   )
 }

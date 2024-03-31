@@ -83,7 +83,7 @@ function HomeLayout({ children }) {
                         </li>
 
                         <li>
-                            <Link to="/store">Store</Link>
+                            <Link to="/custom-clothing">Custom Clothing</Link>
                         </li>
 
 
