@@ -67,7 +67,7 @@ function EditProfile() {
 
     return (
         <HomeLayout>
-            <div className="flex items-center justify-center h-[100vh]">
+            <div className="flex items-center justify-center bg-[#2e3138] h-[100vh]">
                 <form
                     onSubmit={onFormSubmit}
                     className="flex flex-col justify-center gap-5 rounded-lg p-4 text-white w-80 min-h-[26rem] shadow-[0_0_10px_black]"

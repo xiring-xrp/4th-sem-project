@@ -34,7 +34,7 @@ export const login = createAsyncThunk("auth/login", async (data) => {
   try {
     let res = axiosInstance.post("/user/login", data);
 
-    await toast.promise(res, {
+     toast.promise(res, {
       loading: "Loading...",
       success: (data) => {
         return data?.data?.message;
@@ -134,7 +134,8 @@ export const updateProfile = createAsyncThunk(
   "/user/update/profile",
   async (data) => {
     try {
-      let res = axiosInstance.put(`/user/update/${data[0]}`, data[1]);
+      
+      let res = axiosInstance.put(`/user/update`,data[1]);
 
       toast.promise(res, {
         loading: "Updating...",
@@ -182,12 +183,14 @@ const authSlice = createSlice({
     builder
       // for user login
       .addCase(login.fulfilled, (state, action) => {
-        localStorage.setItem("data", JSON.stringify(action?.payload?.user));
+        if(action?.payload){
+          localStorage.setItem("data", JSON.stringify(action?.payload?.user));
         localStorage.setItem("isLoggedIn", true);
         localStorage.setItem("role", action?.payload?.user?.role);
         state.isLoggedIn = true;
         state.data = action?.payload?.user;
         state.role = action?.payload?.user?.role;
+        }
       })
       // for user logout
       .addCase(logout.fulfilled, (state) => {

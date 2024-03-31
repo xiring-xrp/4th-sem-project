@@ -137,22 +137,22 @@ const logout = (req, res) => {
     });
 
 };
-// const getProfile = async (req, res, next) => {
-//     try {
-//         const userID = req.user.id;
-//         const user = await user.findByID(userID);
+const getProfile = async (req, res, next) => {
+    try {
+        const userID = req.user.id;
+        const user = await User.findById(userID);
 
-//         res.status(200).json({
-//             sucess: true,
-//             message: 'user deatails',
-//             user
-//         })
-//     } catch (error) {
+        res.status(200).json({
+            success: true,
+            message: 'user deatails',
+            user
+        })
+    } catch (error) {
 
-//         return next(new AppError('failed to fetch error'));
-//     }
+        return next(new AppError('failed to fetch error'));
+    }
 
-// }
+}
 
 
 const forgotPassword = async (req, res, next) => {
@@ -263,10 +263,10 @@ const changePassword = async (req, res, next) => {
 
 
 
-const updateUser = async (req, res) => {
+const updateUser = async (req, res,next) => {
     const { fullName } = req.body;
-    const { id } = req.user.id;
-
+    const id = req.user.id;
+    
     const user = await User.findById(id);
     if (!user) {
         return next(
@@ -275,11 +275,12 @@ const updateUser = async (req, res) => {
         )
 
     }
-    if (req.fullName) {
+    if (req.body.fullName) {
         user.fullName = fullName;
     }
+    console.log(req.file);
     if (req.file) {
-        await cloudinary.v2.uploader.destroy(user.public_id);
+        await cloudinary.v2.uploader.destroy(user.avatar.public_id);
         try {
             const result = await cloudinary.v2.uploader.upload(req.file.path, {
                 folder: 'lms',
@@ -307,7 +308,7 @@ const updateUser = async (req, res) => {
 
     }
     await user.save();
-
+    console.log(user);
     res.status(200).json({
         success: true,
         message: 'user details update sucessfully'
@@ -323,7 +324,8 @@ export {
     register,
     forgotPassword,
     resetPassword,
-    changePassword
-
+    changePassword,
+    updateUser,
+    getProfile
 
 }
