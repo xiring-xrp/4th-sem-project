@@ -116,7 +116,7 @@ const login = async (req, res, next) => {
 
 
     catch (error) {
-        return (new AppError(e.message, 500));
+        return (new AppError(error.message, 500));
 
     }
 

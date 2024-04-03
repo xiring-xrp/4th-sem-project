@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Tailors from "../assets/images/Tailors.png"
-import Measurement from "../assets/images/measurement.jpeg";
 import Chinos from "../assets/images/Chinos.jpg";
 import Coats from "../assets/images/Coats.jpg";
 import Jeans from "../assets/images/Jeans.jpg";
