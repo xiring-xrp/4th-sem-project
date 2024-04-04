@@ -17,4 +17,17 @@ const getAllClothings=async(req,res,next)=>{
         return next(new AppError(error.message, 500));
     }
 }
-export {getAllClothings}
+const createNewClothing=async(req,res,next)=>{
+    const {lothing_category,clothing_type,colors,rate} = req.body
+    if (!lothing_category || !clothing_type || !colors)
+
+
+
+
+    try{
+         
+    }catch(error){
+        return next(new AppError(error.message,500));
+    }
+}
+export {getAllClothings,createNewClothing}

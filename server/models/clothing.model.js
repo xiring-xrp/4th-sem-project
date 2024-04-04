@@ -30,18 +30,10 @@ const clothingSchema=new Schema({
             type:String,
             required:true
         },
-        fabrics:[
-            {
-                fabric_name:{
-                    type:String,
-                    required:true
-                },
-                fabric_price:{
-                    type:String,
-                    required:true
-                }
-            }
-        ],
+      fabricId:[{
+        type:Schema.Types.ObjectId,
+        ref:"Fabric"
+      }],
         colors:[
             {
                 type:String,
@@ -55,5 +47,6 @@ const clothingSchema=new Schema({
         default:true
     }
 },{timestamps:true});
+
 const Clothing=model('Clothing',clothingSchema,'clothings');
 export default Clothing;

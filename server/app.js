@@ -8,6 +8,7 @@ import morgan from 'morgan';
 import useroutes from './routes/user.routes.js'
 import errormiddleware from './middlewares/error.middleware.js';
 import clothingRoutes from './routes/clothing.routes.js'
+import fabricRouter from './routes/fabric.routes.js';
 
 
 app.use(express.urlencoded({ extended:true}));
@@ -25,6 +26,7 @@ app.use('/ping', function(req,res){
 //rotes of 3 model
 app.use('/api/v1/user',useroutes );
 app.use('/api/v1/clothing',clothingRoutes );
+app.use('/api/v1/fabric',fabricRouter);
 
 
 app.all('*',(req, res) =>{
