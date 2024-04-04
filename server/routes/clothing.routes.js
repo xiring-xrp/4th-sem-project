@@ -1,5 +1,6 @@
 import express from 'express';
-import { getAllClothings } from '../controllers/clothing.controller.js';
+import { createNewClothing, getAllClothings } from '../controllers/clothing.controller.js';
 const router=express.Router();
 router.get("/getAllClothings",getAllClothings)
+router.post("/create",createNewClothing)
 export default router;

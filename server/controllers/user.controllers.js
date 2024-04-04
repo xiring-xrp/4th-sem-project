@@ -235,7 +235,7 @@ const changePassword = async (req, res, next) => {
     }
 
     const user = await User.find({ _id: id }).select('+password');
-    console.log(user);
+    console.log(user);  
     if (!user) {
         return next(
             new AppError('user does not exist ', 400)
