@@ -11,6 +11,7 @@ import AdminDashboard from "./Pages/Admin/AdminDashboard"
 import ClothingList from "./Pages/Admin/ClothingsList"
 import ClothingForm from "./Pages/Admin/ClothingForm"
 import ClothingCategoryList from "./Components/ClothingCategoryList"
+import ClothingOrder from "./Components/ClothingOrder"
 
 function App() {
  
@@ -27,6 +28,7 @@ function App() {
       <Route path="/admin/clothing" element={<ClothingList/>}></Route>
       <Route path="/admin/clothing/create" element={<ClothingForm/>}></Route>
       <Route path="/custom-clothing/clothing-categories-list" element={<ClothingCategoryList/>}></Route>
+      <Route path="/custom-clothing/order" element={<ClothingOrder />}></Route>
     </Routes>
   )
 }

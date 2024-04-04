@@ -1,58 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BsImageFill } from 'react-icons/bs';
 
 import AdminLayout from "../../Layouts/AdminLayout";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllFabrics } from "../../redux/slices/fabricSlice";
 
 function ClothingForm(){
-    const fabrics = [
-        "Wool",
-        "Cotton",
-        "Linen",
-        "Polyester",
-        "Silk",
-        "Cashmere",
-        "Mohair",
-        "Tweed",
-        "Flannel",
-        "Gabardine",
-        "Velvet",
-        "Corduroy",
-        "Fleece",
-        "Nylon",
-        "Gore-Tex",
-        "Leather",
-        "Faux Fur",
-        "Down",
-        "Waxed Cotton",
-        "Denim",
-        "Chino",
-        "Twill",
-        "Satin",
-        "Stretch Denim",
-        "Selvedge Denim",
-        "Raw Denim",
-        "Acid Wash Denim",
-        "Distressed Denim",
-        "Colored Denim",
-        "Black Denim",
-        "White Denim",
-        "Coated Denim",
-        "Polyester Blend",
-        "Chambray",
-        "Oxford Cloth",
-        "Poplin",
-        "Jersey",
-        "Hemp",
-        "Bamboo",
-        "Modal",
-        "Viscose",
-        "Rayon",
-        "Organic Cotton",
-        "Tencel",
-        "Merino Wool",
-        "Soy Fabric"
-      ];
-
+    const dispatch=useDispatch();
+    const {fabricData}=useSelector((state)=>state?.fabric);
+    async function getEveryFabrics(){
+        await dispatch(getAllFabrics());
+    }
+    useEffect(()=>{
+        getEveryFabrics()
+    },[])
       const colors = [
         "Black",
         "White",
@@ -121,7 +82,7 @@ return <AdminLayout>
                     <label className="font-bold text-yellow-500 text-xl" htmlFor="cloth_category">
                         Clothing Category
                     </label>
-                    <select name="" id="">
+                    <select name="" id="" className="text-black">
                         <option className="">Suits</option>
                         <option className="">Pants</option>
                         <option className="">T-Shirts</option>
@@ -129,12 +90,17 @@ return <AdminLayout>
                         <option className="">Coats</option>
                     </select>
 
+                    <div>
+                        <label htmlFor="">Clothing Name</label>
+                        <input type="text"/>
+                    </div>
+                   
                   <div >
                     <label className="font-bold text-yellow-500 text-xl" htmlFor="fabrics">Fabrics</label>
                            <div className="grid grid-cols-7">
-                           {fabrics.map((fabric,index)=>{
-                                return <div key="index">
-                                    <input type="checkbox" value={fabric}/>{fabric}
+                           {fabricData.map((fabric)=>{
+                                return <div key={fabric._id}>
+                                    <input type="checkbox" value={fabric.fabric._id}/>{fabric.fabric_name}
                                 </div>
                             })}
                            </div>
