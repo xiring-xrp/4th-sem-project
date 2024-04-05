@@ -12,6 +12,21 @@ export const getAllClothings=createAsyncThunk("clothing/getAll",async()=>{
         toast.error(error?.response?.data?.message);
     }
 })
+export const createClothing=createAsyncThunk("cloting/create",async(data)=>{
+    try{
+        const res=axiosInstance.post("/clothing/create",data);
+        toast.promise(res,{
+            loading:"Waiting to create clothing",
+            success:(data)=>{
+            return data?.data?.message
+            },
+            error:"Failed to create data"
+        })
+        return (await res).data
+    }catch(error){
+        toast.error(error?.response?.data?.message);
+    }
+})
 const clothingSlice=createSlice({
     name:'clothing',
     initialState,
