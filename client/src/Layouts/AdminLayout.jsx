@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import Footer from '../Components/Footer';
 import { logout } from '../redux/slices/authSlice';
-function HomeLayout({ children }) {
+function AdminLayout({ children }) {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -59,48 +59,23 @@ function HomeLayout({ children }) {
                                 <AiFillCloseCircle size={24} />
                             </button>
                         </li>
+                       
                         <li>
-                            <Link to="/">Home</Link>
-                        </li>
-
-                        {isLoggedIn && role === 'ADMIN' && (
-                            <li>
-                                <Link to="/admin/dashboard"> Admin DashBoard</Link>
-                            </li>
-                        )}
-                        {isLoggedIn && role === 'ADMIN' && (
-                            <li>
-                                <Link to="/course/create"> Create new course</Link>
-                            </li>
-                        )}
-
-                        <li>
-                            <Link to="/about">About Us</Link>
+                            <Link to="/admin">Home</Link>
                         </li>
                         
                         <li>
-                            <Link to="/contact">Contact Us</Link>
+                            <Link to="/admin/orders">Orders</Link>
+                        </li>
+                        
+                        <li>
+                            <Link to="/admin/clothing">Clothings</Link>
                         </li>
 
                         <li>
-                            <Link to="/custom-clothing">Custom Clothing</Link>
+                            <Link to="/admin/payments">Payments</Link>
                         </li>
-
-
-                        {!isLoggedIn && (
-                            <li className="absolute bottom-4 w-[90%]">
-                                <div className="w-full flex items-center justify-center">
-                                    <button className='bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-300 btn-primary px-4 py-1 font-semibold rounded-md w-full'>
-                                        <Link to="/login">Login</Link>
-                                    </button>
-                                    <button className='border border-yellow-500 hover hover:bg-yellow-600 transition-all ease-in-out duration-300 btn-secondary px-4 py-1 font-semibold rounded-md w-full'>
-                                        <Link to="/signup">Signup</Link>
-                                    </button>
-                                </div>
-                            </li>
-                        )}
-
-                        {isLoggedIn && (
+                     
                             <li className="absolute bottom-4 w-[90%]">
                                 <div className="w-full flex items-center justify-center">
                                     <button className='bg-yellow-500 hover:bg-yellow-600 transition-all ease-in-out duration-300 btn-primary px-4 py-1 font-semibold rounded-md w-full'>
@@ -111,16 +86,16 @@ function HomeLayout({ children }) {
                                     </button>
                                 </div>
                             </li>
-                        )}
+                        
                     </ul>
                 </div>
             </div>
 
             { children }
 
-            <Footer />
+            <Footer/>
         </div>
     );
 }
 
-export default HomeLayout;
+export default AdminLayout;

@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
-
-import Measurement from "../assets/images/measurement.jpeg";
+import Tailors from "../assets/images/Tailors.png"
+import Chinos from "../assets/images/Chinos.jpg";
+import Coats from "../assets/images/Coats.jpg";
+import Jeans from "../assets/images/Jeans.jpg";
 import HomeLayout from "../Layouts/HomeLayout";
+import CarouselSlide from "../Components/CarouselSlide";
 
 function HomePage() {
+    const images=[Chinos, Coats, Jeans]
+    
     return (
         <HomeLayout>
 
@@ -11,7 +16,7 @@ function HomePage() {
                 <div className="pt-10 text-white flex items-center justify-center gap-10 mx-16 h-[100vh]">
                         <div className="w-1/2 space-y-6">
                             <h1 className="text-5xl font-semibold">
-                                Discover the art of bespoke tailoring with   
+                                  
                                 <span className="text-yellow-500 font-bold">
                                     Fitness Tailor
                                 </span>
@@ -21,9 +26,9 @@ function HomePage() {
                             </p>
 
                             <div className="space-x-6">
-                                <Link to="/store">
-                                    <button className="bg-yellow-500 px-5 py-3 rounded-md font-semibold text-lg cursor-pointer hover:bg-yellow-600 transition-all ease-in-out duration-300">
-                                        Explore stores
+                                <Link to="/custom-clothing">
+                                    <button className="bg-yellow-500 px-7 py-3 rounded-md font-semibold text-lg cursor-pointer hover:bg-yellow-600 transition-all ease-in-out duration-300">
+                                        Custom
                                     </button>
                                 </Link>
 
@@ -36,34 +41,16 @@ function HomePage() {
                         </div>
 
                         <div className="w-1/2 flex items-center justify-center">
-                            <img alt="homepage image" src={Measurement} />
+                            <img className="rounded-full" alt="homepage image" src={Tailors} />
                         </div>
                 </div>
 
-                <div className="flex gap-10 p-5">
-
-                    <div className="">
-                        <div className="flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-80">
-                            <img src="https://www.mykingandbay.com/files/king-and-bay-custom-clothing-groom-suit-tuxedo.png" alt="" className="h-[70vh]" />
-                            <button className="bg-yellow-500 text-white p-3 text-center hover:bg-yellow-600 transition-all duration-500">Suits</button>
-                        </div>
-                    </div>
-
-                    <div className="flex">
-                        <div className="flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-80">
-                            <img src="https://ae01.alicdn.com/kf/Saf0f692b28074a4db17f4844d3ba2e2cS.jpg?width=800&height=800&hash=1600" alt="" className="h-[70vh]" />
-                            <button className="bg-yellow-500 text-white p-3 text-center hover:bg-yellow-600 transition-all duration-500">Shirts</button>
-                        </div>
-                    </div>
-
-                    <div className="flex">
-                        <div className="flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-80">
-                            <img src="https://media.istockphoto.com/id/511480160/photo/blue-jeans-on-a-brown-wooden-background.jpg?s=612x612&w=0&k=20&c=o1_G3SEkHQs-jnAllsculoNa4t36nPUgQ9vzLpXQHYk=" alt="" className="h-[70vh]" />
-                            <button className="bg-yellow-500 text-white p-3 text-center hover:bg-yellow-600 transition-all duration-500">Jeans</button>
-                        </div>
-                    </div>
-
-                </div>
+                <div className="carousel flex h-[550px] ">
+                {images.map((image,index)=>{
+                    // return <img src={image} key={index}/>
+                    return <CarouselSlide img={image} key={index} slideNumber={index+1} totalSlides={images.length}/>
+                })}  
+            </div>  
             </div>
 
         </HomeLayout>

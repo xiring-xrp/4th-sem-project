@@ -17,12 +17,12 @@ const register = async (req, res, next) => {
 
     const { fullName, email, password, } = req.body;
     if (!fullName || !email || !password) {
-        return next(new AppError('All fields are required , 400'));
+        return next(new AppError('All fields are required here , 400'));
     }
 
     const userExists = await User.findOne({ email });
     if (userExists) {
-        return next(new AppError('email alredy exists', 400))
+        return next(new AppError('email alredy exists give new one', 400))
     }
 
     const user = await User.create({
@@ -59,7 +59,7 @@ const register = async (req, res, next) => {
 
                 // remove from derver 
 
-                // fs.rm(`uploads/${req.file.filename}`)
+                fs.rm(`uploads/${req.file.filename}`)
             }
         } catch (error) {
             return next(
@@ -116,7 +116,7 @@ const login = async (req, res, next) => {
 
 
     catch (error) {
-        return (new AppError(e.message, 500));
+        return (new AppError(error.message, 500));
 
     }
 
@@ -235,7 +235,7 @@ const changePassword = async (req, res, next) => {
     }
 
     const user = await User.find({ _id: id }).select('+password');
-    console.log(user);
+    console.log(user);  
     if (!user) {
         return next(
             new AppError('user does not exist ', 400)
