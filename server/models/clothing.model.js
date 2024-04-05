@@ -5,16 +5,16 @@ const clothingSchema=new Schema({
         required:[true,"Clothing category is required"],
         unique:[true,"Category already available"]
     },
-    thumbnail:{
-        public_id:{
-            type:String,
-            required:true
-        },
-        secure_url:{
-            type:String,
-            required:true
-        }
-    },
+    // thumbnail:{
+    //     public_id:{
+    //         type:String,
+    //         required:true
+    //     },
+    //     secure_url:{
+    //         type:String,
+    //         required:true
+    //     }
+    // },
     clothing_category:[{
         thumbnail:{
             public_id:{
@@ -30,10 +30,10 @@ const clothingSchema=new Schema({
             type:String,
             required:true
         },
-      fabricId:[{
-        type:Schema.Types.ObjectId,
-        ref:"Fabric"
-      }],
+        fabrics:[{fabricId:{
+            type:Schema.Types.ObjectId,
+            ref:"Fabric"
+        }}],
         colors:[
             {
                 type:String,
