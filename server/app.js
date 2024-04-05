@@ -11,8 +11,8 @@ import clothingRoutes from './routes/clothing.routes.js'
 import fabricRouter from './routes/fabric.routes.js';
 
 
-app.use(express.urlencoded({ extended:true}));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors({
     origin: 'http://localhost:5173',
     credentials: true

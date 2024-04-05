@@ -65,17 +65,15 @@ function ClothingForm() {
         const uploadedImage = event.target.files[0];
 
         if (uploadedImage) {
+            setClothingData(prevState => {
+                const updatedCategory = { ...prevState.clothing_category[0], thumbnail: uploadedImage};
+                const updatedCategories = [updatedCategory, ...prevState.clothing_category.slice(1)];
+                return { ...prevState, clothing_category: updatedCategories };
+            });
             const fileReader = new FileReader();
             fileReader.readAsDataURL(uploadedImage);
             fileReader.addEventListener("load", function () {
-                const imageDataUrl = this.result;
-
-                setClothingData(prevState => {
-                    const updatedCategory = { ...prevState.clothing_category[0], thumbnail: imageDataUrl };
-                    const updatedCategories = [updatedCategory, ...prevState.clothing_category.slice(1)];
-                    return { ...prevState, clothing_category: updatedCategories };
-                });
-                setPreviewImage(imageDataUrl);
+                setPreviewImage(this.result);
             });
         }
     }
@@ -129,7 +127,7 @@ function ClothingForm() {
             }
         }
     }
-
+    
     async function createNewClothing(e) {
         e.preventDefault();
         const response = await dispatch(createClothing(clothingData));
@@ -180,7 +178,7 @@ function ClothingForm() {
                 />
 
                 <label className="font-bold text-yellow-500 text-xl" htmlFor="cloth_category">
-                    Clothing Category
+                    Clothing 
                 </label>
                 <select name="cloth_category" id="cloth_category" className="text-black" value={clothingData.clothing} onChange={handleUserInput}>
                     <option className="" value="Suits">Suits</option>
@@ -191,7 +189,7 @@ function ClothingForm() {
                 </select>
 
                 <div>
-                    <label htmlFor="clothingName">Clothing Name</label>
+                    <label htmlFor="clothingName">Clothing Type</label>
                     <input
                         type="text"
                         name="clothingName" // Corrected name attribute
@@ -226,7 +224,7 @@ function ClothingForm() {
                     </div>
                 </div>
 
-                <button type="submit" className='mt-2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm px-4 py-2 font-semibold text-lg cursor-pointer'>
+                <button type="submit" name="submit" className='mt-2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm px-4 py-2 font-semibold text-lg cursor-pointer'>
                     Create Clothing
                 </button>
 

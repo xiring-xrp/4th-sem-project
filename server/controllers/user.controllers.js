@@ -59,7 +59,7 @@ const register = async (req, res, next) => {
 
                 // remove from derver 
 
-                // fs.rm(`uploads/${req.file.filename}`)
+                fs.rm(`uploads/${req.file.filename}`)
             }
         } catch (error) {
             return next(

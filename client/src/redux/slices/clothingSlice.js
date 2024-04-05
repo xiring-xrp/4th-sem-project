@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosInstance from "../../Helpers/axiosInstance";
-
+import toast from "react-hot-toast";
 const initialState={
     clothingData:[]
 }
@@ -15,7 +15,7 @@ export const getAllClothings=createAsyncThunk("clothing/getAll",async()=>{
 export const createClothing=createAsyncThunk("cloting/create",async(data)=>{
     try{
         const res=axiosInstance.post("/clothing/create",data);
-        toast.promise(res,{
+        await toast.promise(res,{
             loading:"Waiting to create clothing",
             success:(data)=>{
             return data?.data?.message
