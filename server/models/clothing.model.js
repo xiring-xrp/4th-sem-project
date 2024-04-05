@@ -30,10 +30,10 @@ const clothingSchema=new Schema({
             type:String,
             required:true
         },
-        fabrics:[{fabricId:{
-            type:Schema.Types.ObjectId,
-            ref:"Fabric"
-        }}],
+      fabrics:[{fabricId:{
+        type:Schema.Types.ObjectId,
+        ref:"Fabric"
+    }}],
         colors:[
             {
                 type:String,
