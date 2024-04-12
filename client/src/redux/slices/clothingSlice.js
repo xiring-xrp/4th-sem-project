@@ -7,6 +7,7 @@ const initialState={
 export const getAllClothings=createAsyncThunk("clothing/getAll",async()=>{
     try{
         const res=axiosInstance.get("clothing/getAllClothings");
+   
         return (await res).data.clothings
     }catch(error){
         toast.error(error?.response?.data?.message);

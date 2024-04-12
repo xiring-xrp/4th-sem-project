@@ -21,7 +21,7 @@ function Signup() {
         password: "",
         avatar: ""
     });
-
+   
     function handleUserInput(e) {
         const {name, value} = e.target;
         setSignupData({
@@ -47,6 +47,7 @@ function Signup() {
             })
         }
     }
+    console.log(signupData);
 
     async function createNewAccount(event) {
         event.preventDefault();

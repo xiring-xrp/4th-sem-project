@@ -9,22 +9,22 @@ import { useNavigate } from "react-router-dom";
 
 function ClothingForm() {
     const dispatch = useDispatch();
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const { fabricData } = useSelector((state) => state?.fabric);
     const [clothingData, setClothingData] = useState({
         clothing: "suits",
-        clothing_category: [
-            {
-                clothing_type: "",
-                thumbnail: "",
-                fabrics: [{
-                    fabricId: ""
-                }],
-                colors: []
+        clothing_category:
+        {
+            clothing_type: "",
+            thumbnail: "",
+            fabrics: [{
+                fabricId: ""
+            }],
+            colors: []
 
-            }
+        }
 
-        ]
+
 
     })
 
@@ -59,24 +59,32 @@ function ClothingForm() {
 
 
     const [previewImage, setPreviewImage] = useState("");
-
     function getImage(event) {
         event.preventDefault();
         const uploadedImage = event.target.files[0];
-
+    
         if (uploadedImage) {
-            setClothingData(prevState => {
-                const updatedCategory = { ...prevState.clothing_category[0], thumbnail: uploadedImage};
-                const updatedCategories = [updatedCategory, ...prevState.clothing_category.slice(1)];
-                return { ...prevState, clothing_category: updatedCategories };
-            });
             const fileReader = new FileReader();
+            fileReader.onload = function () {
+                const imageData = fileReader.result; // This will be base64 data
+                setPreviewImage(imageData);
+            };
             fileReader.readAsDataURL(uploadedImage);
-            fileReader.addEventListener("load", function () {
-                setPreviewImage(this.result);
-            });
+    
+            // Update clothing_data state with the uploaded image
+            setClothingData(prevState => ({
+                ...prevState,
+                clothing_category: {
+                    ...prevState.clothing_category,
+                    thumbnail: uploadedImage
+                }
+            }));
         }
     }
+    
+
+
+
 
     function handleUserInput(event) {
         const { name, value, type, checked } = event.target;
@@ -87,19 +95,19 @@ function ClothingForm() {
                 // Handle fabrics checkboxes
                 setClothingData(prevState => ({
                     ...prevState,
-                    clothing_category: prevState.clothing_category.map(category => ({
-                        ...category,
-                        fabrics: checked ? [...category.fabrics, { fabricId: value }] : category.fabrics.filter(fabric => fabric.fabricId !== value)
-                    }))
+                    clothing_category: {
+                        ...prevState.clothing_category,
+                        fabrics: checked ? [...prevState.clothing_category.fabrics, { fabricId: value }] : prevState.clothing_category.fabrics.filter(fabric => fabric.fabricId !== value)
+                    }
                 }));
             } else if (name === "colors") {
                 // Handle colors checkboxes
                 setClothingData(prevState => ({
                     ...prevState,
-                    clothing_category: prevState.clothing_category.map(category => ({
-                        ...category,
-                        colors: checked ? [...category.colors, value] : category.colors.filter(color => color !== value)
-                    }))
+                    clothing_category: {
+                        ...prevState.clothing_category,
+                        colors: checked ? [...prevState.clothing_category.colors, value] : prevState.clothing_category.colors.filter(color => color !== value)
+                    }
                 }));
             }
         } else {
@@ -108,49 +116,63 @@ function ClothingForm() {
                 // Update clothing name
                 setClothingData(prevState => ({
                     ...prevState,
-                    clothing_category: prevState.clothing_category.map((category, index) => {
-                        if (index === 0) {
-                            return {
-                                ...category,
-                                clothing_type: value
-                            };
-                        }
-                        return category;
-                    })
+                    clothing_category: {
+                        ...prevState.clothing_category,
+                        clothing_type: value
+                    }
                 }));
-            } else {
-                // Handle other inputs (if any)
+            } else if (name === "cloth_category") {
+                // Update clothing category
                 setClothingData(prevState => ({
                     ...prevState,
-                    [name]: value
+                    clothing: value,
+                    clothing_category: {
+                        ...prevState.clothing_category,
+                        clothing_type: "" // Reset clothing type
+                    }
                 }));
             }
         }
     }
-    
+
+    console.log(clothingData);
     async function createNewClothing(e) {
         e.preventDefault();
-        const response = await dispatch(createClothing(clothingData));
+        const formData = new FormData();
+
+        // Append each key-value pair from clothingData to the FormData object
+        formData.append('clothing', clothingData.clothing);
+        formData.append('clothing_category[clothing_type]', clothingData.clothing_category.clothing_type);
+        formData.append('clothing_category[thumbnail]', clothingData.clothing_category.thumbnail);
+        // Append fabrics array
+        clothingData.clothing_category.fabrics.forEach((fabric, index) => {
+            formData.append(`clothing_category[fabrics][${index}][fabricId]`, fabric.fabricId);
+        });
+        // Append colors array
+        clothingData.clothing_category.colors.forEach((color, index) => {
+            formData.append(`clothing_category[colors][${index}]`, color);
+        });
+        const response = await dispatch(createClothing(formData));
         if (response?.payload?.success) {
             setClothingData({
                 clothing: "suits",
-                clothing_category: [
-                    {
-                        clothing_type: "",
-                        thumbnail: "",
-                        fabrics: [{
-                            fabricId: ""
-                        }],
-                        colors: []
+                clothing_category:
+                {
+                    clothing_type: "",
+                    thumbnail: "",
+                    fabrics: [{
+                        fabricId: ""
+                    }],
+                    colors: []
 
-                    }
+                }
 
-                ]
+
 
             }
             )
             navigate("/admin/cothing");
-            
+
         }
     }
 
@@ -178,7 +200,7 @@ function ClothingForm() {
                 />
 
                 <label className="font-bold text-yellow-500 text-xl" htmlFor="cloth_category">
-                    Clothing 
+                    Clothing
                 </label>
                 <select name="cloth_category" id="cloth_category" className="text-black" value={clothingData.clothing} onChange={handleUserInput}>
                     <option className="" value="Suits">Suits</option>
@@ -194,7 +216,7 @@ function ClothingForm() {
                         type="text"
                         name="clothingName" // Corrected name attribute
                         id="clothingName"
-                        value={clothingData.clothing_category[0].clothing_type} // Updated value to match the state structure
+                        value={clothingData.clothing_category.clothing_type} // Updated value to match the state structure
                         onChange={handleUserInput}
                         placeholder="Enter your clothing name"
                         className="text-black font-bold"

@@ -14,7 +14,7 @@ const cookieOptions = {
 
 
 const register = async (req, res, next) => {
-
+    
     const { fullName, email, password, } = req.body;
     if (!fullName || !email || !password) {
         return next(new AppError('All fields are required here , 400'));
