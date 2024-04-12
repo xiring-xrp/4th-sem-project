@@ -19,7 +19,7 @@ const getAllClothings=async(req,res,next)=>{
 }
 const createNewClothing=async(req,res,next)=>{
     const {clothing_category,clothing_type,colors,rate} = req.body
-    if (!clothing_category || !clothing_type || !colors || rate ){
+    if (!clothing_category || !clothing_type || !colors || !rate ){
         return next(
             new AppError("all field are required",400)
              
@@ -57,7 +57,7 @@ try {
 
     await cloth.save();
     res.status(200).json({
-        sucess:true,
+        success:true,
         message:'cloth created sucessfullly',
         course
     })
@@ -67,8 +67,10 @@ try {
  
 
 catch (error) {
+    return next(new AppError(error.message, 500));
     
 }
+
 
 }
 

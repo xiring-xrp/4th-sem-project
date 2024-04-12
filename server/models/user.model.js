@@ -32,6 +32,10 @@ const userSchema = new Schema({
             type:String
         }
     },
+    measurementId:{
+        type:Schema.Types.ObjectId,
+        ref:"Measurement"
+    },
     role: {
         type: String,
         enum:['USER','ADMIN','SUPERADMIN'],
