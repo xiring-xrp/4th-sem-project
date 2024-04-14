@@ -1,12 +1,13 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import HomeLayout from "../Layouts/HomeLayout";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import { createMeasurement } from "../redux/slices/measurementSlice";
 function Measurement(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const {data}=useSelector((state)=>state?.auth);
     const [measurementData, setMeasurementData] = useState({
         neck: "",
         sleevesLength: "",
@@ -17,7 +18,8 @@ function Measurement(){
         pantsWaist: "",
         hips: "",
         bicepAround: "",
-        thigh: ""
+        thigh: "",
+        userId:useSelector((state)=>state?.auth?.data?._id)
     });
 
     const handleUserInput = (e) => {
@@ -27,27 +29,19 @@ function Measurement(){
             [name] : value
         })
     }
+    console.log(measurementData)
 
-    async function createMeasurement (event){
+    async function createNewMeasurement(event){
+        console.log('Hi');
         event.preventDefault();
-        if(!measurementData.neck || !measurementData.sleevesLength || !measurementData.shoulderWidth || !measurementData.chestAround || !measurementData.stomach || !measurementData.legLength || !measurementData.pantsWaist || !measurementData.hips || !measurementData.bicepAround || !measurementData.thigh){
-            toast.error("Please fill all the details");
-            return
-        }
+        // if(!measurementData.neck || !measurementData.sleevesLength || !measurementData.shoulderWidth || !measurementData.chestAround || !measurementData.stomach || !measurementData.legLength || !measurementData.pantsWaist || !measurementData.hips || !measurementData.bicepAround || !measurementData.thigh){
+        //     toast.error("Please fill all the details");
+        //     return
+        // }
 
-        const formData = new FormData();
-        formData.append("neck", measurementData.neck);
-        formData.append("sleevesLength", measurementData.sleevesLength);
-        formData.append("shoulderWidth", measurementData.shoulderWidth);
-        formData.append("chestAround", measurementData.chestAround);
-        formData.append("stomach", measurementData.stomach);
-        formData.append("legLength", measurementData.legLength);
-        formData.append("pantsWaist", measurementData.pantsWaist);
-        formData.append("hips", measurementData.hips);
-        formData.append("bicepAround", measurementData.bicepAround);
-        formData.append("thigh", measurementData.thigh);
+        
 
-        const response = await dispatch(createMeasurements(formData));
+        const response = await dispatch(createMeasurement(measurementData));
         if(response?.payload?.success){
             setMeasurementData({
                 neck: "",
@@ -63,11 +57,11 @@ function Measurement(){
             })
         }
     }
-    console.log(measurementData)
+    
     return (
         <HomeLayout>
             <div className="flex py-14 px-16 bg-[#2e3138] text-white">
-                <form noValidate onSubmit={createMeasurement} className="grid grid-cols-3 ">
+                <form noValidate onSubmit={createNewMeasurement} className="grid grid-cols-3 ">
                     <div className="">
                         <label htmlFor="neck">NECK</label><br />
                         <input 

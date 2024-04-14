@@ -32,7 +32,7 @@ const measurementSchema = new Schema({
 
             },
 
-            paintsWaist:{
+            pantsWaist:{
                 type: String,
                 required: true
 
