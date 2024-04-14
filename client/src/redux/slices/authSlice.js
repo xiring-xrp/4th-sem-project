@@ -81,6 +81,15 @@ export const getUserData = createAsyncThunk("/user/details", async () => {
   }
 });
 
+export const getMeasurementData = createAsyncThunk("/user/measurements", async () => {
+  try{
+    const res = await axiosInstance.get("/user/me");
+    return res?.data;
+  } catch (error){
+    toast.error(error.message);
+  }
+})
+
 // function to change user password
 export const changePassword = createAsyncThunk(
   "/auth/changePassword",
@@ -198,6 +207,15 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.data = {};
       })
+      //for measurement details
+      .addCase(getMeasurementData.fulfilled, (state, action) => {
+        localStorage.setItem("data", JSON.stringify(action?.payload?.user));
+        localStorage.setItem("isLoggedIn", true);
+        state.isLoggedIn = true;
+        state.data = action?.payload?.user;
+        state.measurement = action?.payload?.measurement;
+      })
+      
       // for user details
       .addCase(getUserData.fulfilled, (state, action) => {
         localStorage.setItem("data", JSON.stringify(action?.payload?.user));
