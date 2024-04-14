@@ -8,13 +8,10 @@ const OrderSchema = new Schema({
    measurementId:{
     type:Schema.Types.ObjectId,
     ref:'Measurement'
-   }
-
-   ,
+   },
    clothing:{
     type:String ,
     required:true
-    
    },
    clothing_type:{
     type:String ,
@@ -33,6 +30,10 @@ const OrderSchema = new Schema({
         default:true
 
     },
+    price:{
+        type: String,
+        default: true
+    }
 },{timestamps:true});
 
 const Order = model('Order', OrderSchema );

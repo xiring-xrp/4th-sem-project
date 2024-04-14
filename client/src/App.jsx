@@ -31,8 +31,8 @@ function App() {
       <Route path="/admin/clothing" element={<ClothingList/>}></Route>
       <Route path="/admin/clothing/create" element={<ClothingForm/>}></Route>
       <Route path="/custom-clothing/clothing-categories-list" element={<ClothingCategoryList/>}></Route>
-      <Route path="/custom-clothing/order" element={<ClothingOrder />}></Route>
-      <Route path="/order" element={<Order />} />
+      <Route path="/custom-clothing/order" element={<Order />}></Route>
+      {/* <Route path="/order" element={<Order />} /> */}
     </Routes>
   )
 }
