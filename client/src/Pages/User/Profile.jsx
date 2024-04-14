@@ -40,7 +40,11 @@ function Profile() {
                     <div className="grid grid-cols-2">
                         <p>Email: </p><p>{userData?.email}</p>
                         <p>Role: </p><p>{userData?.role}</p>
-                        <p>Measurement: </p><p>{userData?.measurement}</p>
+                        <p>Measurement: </p><p>{userData?.measurement}
+                            <p>Neck:</p>
+                            <p>Sleeves Length</p>
+                            <p></p>
+                        </p>
                         {/* <p>Subscription: </p>
                         <p>{userData?.subscription?.status === "active" ? "Action" : "Inactive"}</p> */}
                     </div>
