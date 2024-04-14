@@ -31,9 +31,9 @@ function CollectionCard({ data }) {
                 <div className="flex gap-10 p-5">
 
                     {
-                        clothingData.map((clothing) => {
-                            console.log(clothing);
-                            return <div className="flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-80">
+                        clothingData.map((clothing,index) => {
+                            
+                            return <div key={index} className="flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-80">
                                 <img src="https://res.cloudinary.com/dluktmyew/image/upload/v1712854074/lms/nnmstknodeion5f21kcb.jpg" alt={`${clothing.clothing}`} className="h-[70vh]" />
                                 <button className="bg-yellow-500 text-white p-3 font-bold text-center hover:bg-yellow-600 transition-all duration-500" onClick={()=>navigate('/custom-clothing/clothing-categories-list',{state: {...clothing}})}>{clothing.clothing}</button>
                             </div>

@@ -21,17 +21,14 @@ function Profile() {
     //     toast.success("Cancellation completed!");
     //     navigate("/");
 
-    console.log(measurementData)
-    // }
-    async function getUserDetails(){
+    console.log(measurementData);
+    async function getDetails(){
         await dispatch(getUserData());
-    }
-    async function getUserMeasurement(){
         await dispatch(getMeasurementData());
     }
     useEffect(()=>{
-        getUserDetails();
-        getUserMeasurement();
+        
+        getDetails();
     },[])
     return (
         <HomeLayout>
@@ -63,18 +60,20 @@ function Profile() {
                         <p>{userData?.subscription?.status === "active" ? "Action" : "Inactive"}</p> */}
                     </div>
                     <div className="flex items-center justify-between gap-2">
-                        <Link 
-                            to="/add-measurement" 
-                            className="w-1/2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-2 cursor-pointer text-center">
-                                <button>Add Measurement</button>
+                      {measurementData.length==0?(
+                          <Link 
+                          to="/measurement/add" 
+                          className="w-1/2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-2 cursor-pointer text-center">
+                              <button>Add Measurement</button>
 
-                        </Link>
+                      </Link>
+                      ):(
                         <Link 
                             to="/edit-measurement" 
                             className="w-1/2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-2 cursor-pointer text-center">
                                 <button>Edit Measurement</button>
 
-                        </Link>
+                        </Link>)}
                     </div>
                     <div className="flex items-center justify-between gap-2">
 
