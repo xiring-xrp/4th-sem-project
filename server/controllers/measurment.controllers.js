@@ -1,6 +1,6 @@
 
 import Measurement from "../models/measurement.model.js";
-import AppError from "../utils/error.util";
+import AppError from "../utils/error.util.js";
 const giveMeasurment = async (req, res, next) => {
             
                 const {Neck, SLEVAS_LENGTH, SHOULDER_WIDTH, CHEST_AROUND, STOMACH, LEG_LENGTH, PAINTS_WAIST, HIPS, BICEP_AROUND,THIGH } = req.body;
