@@ -5,12 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import HomeLayout from "../../Layouts/HomeLayout";
 import { getUserData } from "../../redux/slices/authSlice";
 import { useEffect } from "react";
+import { getMeasurementData } from "../../redux/slices/measurementSlice";
 
 function Profile() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const userData = useSelector((state) => state?.auth?.data);
+    const measurementData = useSelector((state) => state?.measurement.measureData);
 
     // async function handleCancellation() {
     //     toast("Initiating cancellation");
@@ -19,12 +21,17 @@ function Profile() {
     //     toast.success("Cancellation completed!");
     //     navigate("/");
 
+    console.log(measurementData)
     // }
     async function getUserDetails(){
         await dispatch(getUserData());
     }
+    async function getUserMeasurement(){
+        await dispatch(getMeasurementData());
+    }
     useEffect(()=>{
         getUserDetails();
+        getUserMeasurement();
     },[])
     return (
         <HomeLayout>
@@ -40,15 +47,37 @@ function Profile() {
                     <div className="grid grid-cols-2">
                         <p>Email: </p><p>{userData?.email}</p>
                         <p>Role: </p><p>{userData?.role}</p>
-                        <p>Measurement: </p><p>{userData?.measurement}
-                            <p>Neck:</p>
-                            <p>Sleeves Length</p>
-                            <p></p>
+                        <p>Measurement: </p><p>
+                            <p>Neck:{measurementData.neck}</p>
+                            <p>Sleeves Length:{measurementData.sleevesLength}</p>
+                            <p>Shoulder Width: {measurementData.shoulderWidth}</p>
+                            <p>Chest Around: {measurementData.chestAround}</p>
+                            <p>Stomach {measurementData.stomach}</p>
+                            <p>Leg Length {measurementData.legLength}</p>
+                            <p>Pants Waist {measurementData.pantsWaist}</p>
+                            <p>Hips: {measurementData.hips}</p>
+                            <p>Bicep Around: {measurementData.bicepAround}</p>
+                            <p>Thigh: {measurementData.thigh}</p>
                         </p>
                         {/* <p>Subscription: </p>
                         <p>{userData?.subscription?.status === "active" ? "Action" : "Inactive"}</p> */}
                     </div>
                     <div className="flex items-center justify-between gap-2">
+                        <Link 
+                            to="/add-measurement" 
+                            className="w-1/2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-2 cursor-pointer text-center">
+                                <button>Add Measurement</button>
+
+                        </Link>
+                        <Link 
+                            to="/edit-measurement" 
+                            className="w-1/2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-2 cursor-pointer text-center">
+                                <button>Edit Measurement</button>
+
+                        </Link>
+                    </div>
+                    <div className="flex items-center justify-between gap-2">
+
                         <Link 
                             to="/changepassword" 
                             className="w-1/2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-2 cursor-pointer text-center">
