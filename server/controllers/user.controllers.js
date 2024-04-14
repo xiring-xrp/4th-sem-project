@@ -1,8 +1,8 @@
-import AppError from '../utils/error.util.js';
-import User from "../models/user.model.js";
-import cloudinary from 'cloudinary'
+import cloudinary from 'cloudinary';
+import fs from 'fs/promises';
 import sendEmail from 'nodemailer';
-import fs from 'fs/promises'
+import User from "../models/user.model.js";
+import AppError from '../utils/error.util.js';
 
 
 
@@ -15,7 +15,7 @@ const cookieOptions = {
 
 const register = async (req, res, next) => {
     
-    const { fullName, email, password, } = req.body;
+    const { fullName, email, password,phoneNumber } = req.body;
     if (!fullName || !email || !password) {
         return next(new AppError('All fields are required here , 400'));
     }
@@ -29,6 +29,7 @@ const register = async (req, res, next) => {
         fullName,
         email,
         password,
+        phoneNumber,
         avatar: {
             public_id: email,
             secure_url: ''
@@ -318,14 +319,7 @@ const updateUser = async (req, res,next) => {
 }
 
 export {
-   
-    login,
+    changePassword, forgotPassword, getProfile, login,
     logout,
-    register,
-    forgotPassword,
-    resetPassword,
-    changePassword,
-    updateUser,
-    getProfile
-
-}
+    register, resetPassword, updateUser
+};

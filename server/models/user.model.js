@@ -1,7 +1,7 @@
-import { Schema, model } from "mongoose";
-import bcrypt  from "bcryptjs"
-import Jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 import crypto from "crypto";
+import Jwt from "jsonwebtoken";
+import { Schema, model } from "mongoose";
 const userSchema = new Schema({
     fullName: {
         type :String ,
@@ -9,6 +9,10 @@ const userSchema = new Schema({
         maxLength:[ 50,'name must be less than 50 char '],
         minLength:[6, 'name must be greater than 6 '],
         trim: true,
+    },
+    phoneNumber:{
+        type:String,
+        required:true
     },
     email:{
         type:String,
