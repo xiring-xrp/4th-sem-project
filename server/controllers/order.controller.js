@@ -34,7 +34,29 @@ const makeOrder = async (req , res , next) =>{
         return next (new AppError(error.message, 500))
         
     }
+}
    
 
+    const getAllorders = async (req,res,next) =>{
+        try{
+            const orders=await Order.find({
+                status:true});
+            if(!orders){
+                return next(new AppError("No orders ",500))
+            }
+            res.status(200).json({
+                success:true,
+                message:"All order fetched succesfully",
+                orders
+            })
+        }catch(error){
+            return next(new AppError(error.message, 500));
+        }
+    
+    }
+
+
+export { 
+    makeOrder,
+    getAllorders
 }
-export default makeOrder
