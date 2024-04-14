@@ -6,12 +6,8 @@ const initialState={
     measureData:[]
 }
 export const getMeasurementData = createAsyncThunk("/user/measurements", async () => {
-    try{
       const res = await axiosInstance.get("/measurement/getMeasurement");
       return res?.data.measurement;
-    } catch (error){
-      toast.error(error.message);
-    }
   })
   
 

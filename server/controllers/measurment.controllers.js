@@ -57,7 +57,9 @@ try{
     
     const user =  await User.findById(id 
         ).populate("measurementId");
+        console.log(user);
     const measurement=user.measurementId;
+    console.log(measurement);
     if(!measurement){
         return next( new AppError("no measurment find please provife your measurment first",500))
     }    
