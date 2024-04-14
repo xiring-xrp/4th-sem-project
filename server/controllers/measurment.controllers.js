@@ -1,60 +1,52 @@
-
 import Measurement from "../models/measurement.model.js";
 import AppError from "../utils/error.util.js";
-const giveMeasurment = async (req, res, next) => {
-            
-                const {Neck, SLEVAS_LENGTH, SHOULDER_WIDTH, CHEST_AROUND, STOMACH, LEG_LENGTH, PAINTS_WAIST, HIPS, BICEP_AROUND,THIGH } = req.body;
+import User from "../models/user.model.js";
 
+const giveMeasurement = async (req, res, next) => {
+    const id = req.user.id;
+    const {
+        neck,
+        sleevesLength,
+        shoulderWidth,
+        chestAround,
+        stomach,
+        legLength,
+        pantsWaist,
+        hips,
+        bicepAround,
+        thigh
+    } = req.body;
 
-               if( !Neck || !SLEVAS_LENGTH || !SHOULDER_WIDTH || !CHEST_AROUND || !STOMACH ||  !LEG_LENGTH  || !PAINTS_WAIST || !HIPS || !BICEP_AROUND || !THIGH ){
-                   return next (
-                    new AppError ("all field are required", 400)
-                   )
-                   
-               }
-             try {
-                const measure = await Measurement.create({
-                    Neck,
-                    SLEVAS_LENGTH,
-                    SHOULDER_WIDTH,
-                    CHEST_AROUND,
-                    STOMACH,
-                    LEG_LENGTH,
-                    STOMACH,
-                    LEG_LENGTH,
-                    PAINTS_WAIST,
-                    HIPS,
-                    BICEP_AROUND,
-                    THIGH
+    try {
+        const measure = await Measurement.create({
+            neck,
+            sleevesLength,
+            shoulderWidth,
+            chestAround,
+            stomach,
+            legLength,
+            pantsWaist,
+            hips,
+            bicepAround,
+            thigh
+        });
 
+        const user = await User.findByIdAndUpdate(id, {
+            measurementId: measure._id
+        });
 
+        if (!measure || !user) {
+            return next(new AppError('Measurement creation failed', 500));
+        }
 
+        res.status(200).json({
+            success: true,
+            message: 'Measurement created successfully',
+            measure // Sending the newly created measurement data
+        });
+    } catch (error) {
+        return next(new AppError(error.message, 500));
+    }
+}
 
-
-                })
-
-
-                if(!measure){
-                    return next (
-                        new AppError('measurment cant taken',500)
-                    )
-                }
-
-                await measure.save();
-                res.status(200).json({
-                    succes:true,
-                    message:'created sucessfully',
-                    order
-                })
-             } catch (error) {
-                return next (new AppError(error.message, 500))
-                
-             }
-
-
- }
- 
-export default giveMeasurment ;
-
-    
-
+export default giveMeasurement;

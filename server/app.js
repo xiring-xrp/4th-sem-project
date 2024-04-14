@@ -30,7 +30,7 @@ app.use('/api/v1/user',useroutes );
 app.use('/api/v1/clothing',clothingRoutes );
 app.use('/api/v1/fabric',fabricRouter);
 app.use('/api/v1/order',orderRouter);
-app.use('/api/v1/takeMeasurment',takeMeasurment);
+app.use('/api/v1/measurement',takeMeasurment);
 
 
 app.all('*',(req, res) =>{
