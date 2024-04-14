@@ -43,6 +43,13 @@ function Profile() {
                         <p>Measurement: </p><p>{userData?.measurement}
                             <p>Neck:</p>
                             <p>Sleeves Length</p>
+                            <p>Shoulder Width</p>
+                            <p></p>
+                            <p></p>
+                            <p></p>
+                            <p></p>
+                            <p></p>
+                            <p></p>
                             <p></p>
                         </p>
                         {/* <p>Subscription: </p>
