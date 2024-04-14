@@ -7,7 +7,7 @@ function ClothDetails() {
 
     const { state } = useLocation();
     const navigate = useNavigate();
-    console.log(state);
+    
     const { isLoggedIn } = useSelector((state) => state?.auth);
   
     return (
@@ -43,7 +43,8 @@ function ClothDetails() {
                                 Available Fabrics : {" "}
                             </span>
                             {state.fabrics.map((fabric, index) => {
-                                return <p className="ml-4" key={index}>{fabric.fabric_name}:<span className="ml-2">{fabric.fabric_price}</span></p>
+                                console.log(fabric)
+                                return <p className="ml-4" key={index}>{fabric.fabricId.fabric_name}:<span className="ml-2">Rs {fabric.fabricId.rate} per meter</span></p>
                             })}
                         </div>
                         <p className="font-semibold">

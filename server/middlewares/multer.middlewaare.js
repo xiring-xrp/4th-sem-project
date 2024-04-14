@@ -27,7 +27,9 @@ const  upload = multer ({
         }
     
         cb ( null, true);
+        console.log("Inside Upload");
     } 
+    
     
 })
 export default upload ;

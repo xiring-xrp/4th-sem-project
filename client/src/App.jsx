@@ -1,11 +1,13 @@
 import { Route, Routes } from "react-router-dom"
 import Signup from "./Pages/Signup"
+import Measurement from "./Pages/Measurement"
 import Login from "./Pages/Login"
 import HomePage from "./Pages/HomePage"
 import Profile from "./Pages/User/Profile"
 import EditProfile from "./Pages/User/EditProfile"
 import CollectionCard from "./Components/CollectionCard"
 import ClothDetails from "./Components/ClothDetails"
+import Order from "./Pages/Order"
 import AdminLayout from "./Layouts/AdminLayout"
 import AdminDashboard from "./Pages/Admin/AdminDashboard"
 import ClothingList from "./Pages/Admin/ClothingsList"
@@ -20,6 +22,7 @@ function App() {
       <Route path="/" element={<HomePage />}></Route>
       <Route path="/login" element={<Login />}></Route>
       <Route path="/signup" element={<Signup />}></Route>
+      <Route path="/measurement" element={<Measurement />} />
       <Route path="/user/profile" element={<Profile />}></Route>
       <Route path="/user/editprofile" element={<EditProfile />}></Route>
       <Route path="/custom-clothing" element={<CollectionCard />}></Route>
@@ -29,6 +32,7 @@ function App() {
       <Route path="/admin/clothing/create" element={<ClothingForm/>}></Route>
       <Route path="/custom-clothing/clothing-categories-list" element={<ClothingCategoryList/>}></Route>
       <Route path="/custom-clothing/order" element={<ClothingOrder />}></Route>
+      <Route path="/order" element={<Order />} />
     </Routes>
   )
 }
