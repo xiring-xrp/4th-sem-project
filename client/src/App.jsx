@@ -14,6 +14,7 @@ import ClothingList from "./Pages/Admin/ClothingsList"
 import ClothingForm from "./Pages/Admin/ClothingForm"
 import ClothingCategoryList from "./Components/ClothingCategoryList"
 import ClothingOrder from "./Components/ClothingOrder"
+import Ordered from "./Pages/Admin/ordered"
 
 function App() {
  
@@ -32,6 +33,7 @@ function App() {
       <Route path="/admin/clothing/create" element={<ClothingForm/>}></Route>
       <Route path="/custom-clothing/clothing-categories-list" element={<ClothingCategoryList/>}></Route>
       <Route path="/custom-clothing/order" element={<Order />}></Route>
+      <Route path="/admin/ordered" element={<Ordered />} />
       {/* <Route path="/order" element={<Order />} /> */}
     </Routes>
   )

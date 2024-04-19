@@ -21,12 +21,24 @@ export const createOrder=createAsyncThunk("order/create",async(data)=>{
         toast.error(error?.response?.data?.message);
     }
 })
+export const getOrderedData = createAsyncThunk("/user/details", async () => {
+    try {
+      const res = await axiosInstance.get("/order/getOrder");
+      return res?.data;
+    } catch (error) {
+      toast.error(error.message);
+    }
+  });
 const orderSlice=createSlice({
     name:'order',
     initialState,
     reducers:{},
     extraReducers:(builder)=>{
-        
+        builder
+        .addCase(getOrderedData.fulfilled,(state,action)=>{
+         console.log(action.payload)
+            state.orderData=[action.payload.orders];
+        })
     }
 })
 export default orderSlice.reducer;

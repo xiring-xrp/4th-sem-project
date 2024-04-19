@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 const OrderSchema = new Schema({
    userId:{
     type:Schema.Types.ObjectId,
-    ref:'User'
+    ref:'user'
 
    },
    measurementId:{

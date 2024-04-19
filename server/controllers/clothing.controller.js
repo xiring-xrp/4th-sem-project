@@ -10,6 +10,7 @@ const getAllClothings = async (req, res, next) => {
         if (!clothings) {
             return next(new AppError("No clothings ", 500))
         }
+        console.log(clothings)
         res.status(200).json({
             success: true,
             message: "All clothings fetched succesfully",
