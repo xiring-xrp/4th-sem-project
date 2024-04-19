@@ -6,7 +6,13 @@ import AdminDashboard from "./Pages/Admin/AdminDashboard"
 import ClothingForm from "./Pages/Admin/ClothingForm"
 import ClothingList from "./Pages/Admin/ClothingsList"
 import Ordered from "./Pages/Admin/ordered"
-
+import HomePage from "./Pages/HomePage"
+import Login from './Pages/Login'
+import Measurement from './Pages/Measurement'
+import Order from "./Pages/Order"
+import Signup from "./Pages/Signup"
+import EditProfile from './Pages/User/EditProfile'
+import Profile from './Pages/User/Profile'
 function App() {
  
   return (

@@ -1,8 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
-import HomeLayout from "../../Layouts/HomeLayout";
 import { useEffect } from "react";
-import { getOrderedData } from "../../redux/slices/orderSlice";
+import { useDispatch, useSelector } from "react-redux";
 import AdminLayout from "../../Layouts/AdminLayout";
+import { getOrderedData } from "../../redux/slices/orderSlice";
 
 function Ordered(){
     const dispatch=useDispatch();
@@ -44,6 +43,7 @@ function formatDate(dateString) {
                     <tbody>
                        {
                         orderData.map((order,index)=>{
+                            console.log(order.userId.fullName);
                             return <tr key={index}>
                                 <td className="border-2 pl-2 font-semibold">{++count}</td>
                                 <td className="border-2 pl-2 font-semibold">{formatDate(order.createdAt)}</td>
