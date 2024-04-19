@@ -54,8 +54,8 @@ function Order() {
     event.preventDefault();
 
     const response = await dispatch(createOrder(orderData));
-   console.log(response.payload);
-    if (response?.payload?.success) {
+    console.log(response.payload.success);
+    if (response?.payload.success) {
       setOrderData({
         userId:userData._id,
         measurementId:userData.measurementId,

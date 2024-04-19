@@ -5,13 +5,7 @@ import CollectionCard from "./Components/CollectionCard"
 import AdminDashboard from "./Pages/Admin/AdminDashboard"
 import ClothingForm from "./Pages/Admin/ClothingForm"
 import ClothingList from "./Pages/Admin/ClothingsList"
-import HomePage from "./Pages/HomePage"
-import Login from "./Pages/Login"
-import Measurement from "./Pages/Measurement"
-import Order from "./Pages/Order"
-import Signup from "./Pages/Signup"
-import EditProfile from "./Pages/User/EditProfile"
-import Profile from "./Pages/User/Profile"
+import Ordered from "./Pages/Admin/ordered"
 
 function App() {
  
@@ -30,7 +24,8 @@ function App() {
       <Route path="/admin/clothing/create" element={<ClothingForm/>}></Route>
       <Route path="/custom-clothing/clothing-categories-list" element={<ClothingCategoryList/>}></Route>
       <Route path="/custom-clothing/order" element={<Order />}></Route>
-    
+      <Route path="/admin/ordered" element={<Ordered />} />
+      {/* <Route path="/order" element={<Order />} /> */}
     </Routes>
   )
 }

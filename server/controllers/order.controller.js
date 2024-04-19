@@ -42,7 +42,7 @@ const makeOrder = async (req , res , next) =>{
     const getAllorders = async (req,res,next) =>{
         try{
             const orders=await Order.find({
-                status:true});
+                status:true}).populate("measurementId userId");
             if(!orders){
                 return next(new AppError("No orders ",500))
             }

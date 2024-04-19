@@ -65,7 +65,7 @@ function AdminLayout({ children }) {
                         </li>
                         
                         <li>
-                            <Link to="/admin/orders">Orders</Link>
+                            <Link to="/admin/ordered">Orders</Link>
                         </li>
                         
                         <li>
@@ -75,6 +75,7 @@ function AdminLayout({ children }) {
                         <li>
                             <Link to="/admin/payments">Payments</Link>
                         </li>
+                       
                      
                             <li className="absolute bottom-4 w-[90%]">
                                 <div className="w-full flex items-center justify-center">

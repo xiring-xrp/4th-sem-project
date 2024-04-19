@@ -171,7 +171,7 @@ function ClothingForm() {
 
             }
             )
-            navigate("/admin/cothing");
+            navigate("/admin/clothing");
 
         }
     }

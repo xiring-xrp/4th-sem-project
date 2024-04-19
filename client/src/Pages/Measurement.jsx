@@ -55,8 +55,12 @@ function Measurement(){
                 bicepAround: "",
                 thigh: ""
             })
+
         }
+        navigate("/user/profile")
     }
+
+    
     
     return (
         <HomeLayout>

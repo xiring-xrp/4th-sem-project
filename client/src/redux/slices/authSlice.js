@@ -83,6 +83,7 @@ export const getUserData = createAsyncThunk("/user/details", async () => {
 
 
 
+
 // function to change user password
 export const changePassword = createAsyncThunk(
   "/auth/changePassword",
