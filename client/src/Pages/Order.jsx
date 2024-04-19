@@ -21,13 +21,13 @@ function Order() {
   }, []);
   const [orderData, setOrderData] = useState({
     userId:userData._id,
-    measurementId:measureData._id,
+    measurementId:userData.measurementId,
     clothing_type: state.clothing_type,
     fabric: "",
     color: "",
     rate: "",
   });
-  console.log(orderData);
+ 
   const handleUserInput = (e) => {
     const { name, value } = e.target;
     setOrderData({
@@ -54,11 +54,11 @@ function Order() {
     event.preventDefault();
 
     const response = await dispatch(createOrder(orderData));
-    console.log(response.payload.succes);
-    if (response?.payload.succes) {
+   console.log(response.payload);
+    if (response?.payload?.success) {
       setOrderData({
         userId:userData._id,
-        measurementId:measureData._id,
+        measurementId:userData.measurementId,
         clothing_type: state.clothing_type,
         fabric: "",
         color: "",
@@ -79,7 +79,7 @@ function Order() {
             className="text-black"
             id="clothing_type"
             readOnly
-            value={orderData.clothingType}
+            value={orderData.clothing_type}
           />
           <label htmlFor="fabric">Fabric</label>
           <select

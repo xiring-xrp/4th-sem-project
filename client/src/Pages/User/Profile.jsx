@@ -21,7 +21,6 @@ function Profile() {
     //     toast.success("Cancellation completed!");
     //     navigate("/");
 
-    console.log(measurementData);
     async function getDetails(){
         await dispatch(getUserData());
         await dispatch(getMeasurementData());

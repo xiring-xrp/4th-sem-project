@@ -27,7 +27,7 @@ const makeOrder = async (req , res , next) =>{
 
        
         res.status(200).json({
-            succes:true,
+            success:true,
             message:'created sucessfully',
             order
         })
@@ -58,7 +58,7 @@ const makeOrder = async (req , res , next) =>{
     }
 
 
-export { 
-    makeOrder,
-    getAllorders
-}
+export {
+    getAllorders, makeOrder
+};
+

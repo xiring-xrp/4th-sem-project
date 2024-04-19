@@ -7,7 +7,7 @@ const initialState={
 }
 export const createOrder=createAsyncThunk("order/create",async(data)=>{
     try{
-        const res=axiosInstance.post('/order/add',data);
+        const res=axiosInstance.post('/order/create',data);
         toast.promise(res,{
             loading:'Waiting to order...',
             success:(data)=>{

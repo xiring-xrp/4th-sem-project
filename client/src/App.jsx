@@ -1,19 +1,17 @@
 import { Route, Routes } from "react-router-dom"
-import Signup from "./Pages/Signup"
-import Measurement from "./Pages/Measurement"
-import Login from "./Pages/Login"
-import HomePage from "./Pages/HomePage"
-import Profile from "./Pages/User/Profile"
-import EditProfile from "./Pages/User/EditProfile"
-import CollectionCard from "./Components/CollectionCard"
 import ClothDetails from "./Components/ClothDetails"
-import Order from "./Pages/Order"
-import AdminLayout from "./Layouts/AdminLayout"
-import AdminDashboard from "./Pages/Admin/AdminDashboard"
-import ClothingList from "./Pages/Admin/ClothingsList"
-import ClothingForm from "./Pages/Admin/ClothingForm"
 import ClothingCategoryList from "./Components/ClothingCategoryList"
-import ClothingOrder from "./Components/ClothingOrder"
+import CollectionCard from "./Components/CollectionCard"
+import AdminDashboard from "./Pages/Admin/AdminDashboard"
+import ClothingForm from "./Pages/Admin/ClothingForm"
+import ClothingList from "./Pages/Admin/ClothingsList"
+import HomePage from "./Pages/HomePage"
+import Login from "./Pages/Login"
+import Measurement from "./Pages/Measurement"
+import Order from "./Pages/Order"
+import Signup from "./Pages/Signup"
+import EditProfile from "./Pages/User/EditProfile"
+import Profile from "./Pages/User/Profile"
 
 function App() {
  
@@ -32,7 +30,7 @@ function App() {
       <Route path="/admin/clothing/create" element={<ClothingForm/>}></Route>
       <Route path="/custom-clothing/clothing-categories-list" element={<ClothingCategoryList/>}></Route>
       <Route path="/custom-clothing/order" element={<Order />}></Route>
-      {/* <Route path="/order" element={<Order />} /> */}
+    
     </Routes>
   )
 }

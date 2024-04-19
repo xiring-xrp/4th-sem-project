@@ -28,6 +28,7 @@ export const createClothing=createAsyncThunk("cloting/create",async(data)=>{
         toast.error(error?.response?.data?.message);
     }
 })
+
 const clothingSlice=createSlice({
     name:'clothing',
     initialState,
