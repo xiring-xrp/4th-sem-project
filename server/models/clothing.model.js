@@ -5,7 +5,17 @@ const clothingSchema = new Schema({
         required: [true, "Clothing category is required"],
         unique: [true, "Category already available"]
     },
-    
+    cloth_thumbnail: {
+        public_id: {
+            type: String,
+            
+        },
+        secure_url: {
+            type: String,
+            
+
+        }
+    },
     clothing_category: [{
         thumbnail: {
             public_id: {

@@ -12,7 +12,7 @@ function ClothingForm() {
     const navigate = useNavigate();
     const { fabricData } = useSelector((state) => state?.fabric);
     const [clothingData, setClothingData] = useState({
-        clothing: "suits",
+        clothing: "Suits",
         clothing_category:
         {
             clothing_type: "",
@@ -155,7 +155,7 @@ function ClothingForm() {
         const response = await dispatch(createClothing(formData));
         if (response?.payload?.success) {
             setClothingData({
-                clothing: "suits",
+                clothing: "Suits",
                 clothing_category:
                 {
                     clothing_type: "",
@@ -181,7 +181,7 @@ function ClothingForm() {
     return <AdminLayout>
         <div className="flex justify-center items-center bg-[#2e3138] px-20 py-14 text-white">
             <form onSubmit={createNewClothing} noValidate>
-                <h1 className="text-center text-2xl text-yellow-500 font-bold">CLothing Form</h1>
+                <h1 className="text-center text-4xl text-yellow-500 font-bold mb-4">Create Clothing</h1>
 
                 <label htmlFor="image_uploads" className="cursor-pointer">
                     {previewImage ? (
@@ -199,10 +199,10 @@ function ClothingForm() {
                     accept=".jpg, .jpeg, .png, .svg"
                 />
 
-                <label className="font-bold text-yellow-500 text-xl" htmlFor="cloth_category">
+                <label className="font-bold text-yellow-500 text-2xl" htmlFor="cloth_category">
                     Clothing
                 </label>
-                <select name="cloth_category" id="cloth_category" className="text-black" value={clothingData.clothing} onChange={handleUserInput}>
+                <select name="cloth_category" id="cloth_category" className="text-black mb-2 ml-4 mt-8 rounded" value={clothingData.clothing} onChange={handleUserInput}>
                     <option className="" value="Suits">Suits</option>
                     <option className="" value="Pants">Pants</option>
                     <option className="" value="T-Shirst">T-Shirts</option>
@@ -211,7 +211,7 @@ function ClothingForm() {
                 </select>
 
                 <div>
-                    <label htmlFor="clothingName">Clothing Type</label>
+                    <label htmlFor="clothingName" className="font-bold text-yellow-500 text-2xl">Clothing Type</label>
                     <input
                         type="text"
                         name="clothingName" // Corrected name attribute
@@ -219,14 +219,14 @@ function ClothingForm() {
                         value={clothingData.clothing_category.clothing_type} // Updated value to match the state structure
                         onChange={handleUserInput}
                         placeholder="Enter your clothing name"
-                        className="text-black font-bold"
+                        className="text-black font-bold ml-4 rounded pl-4"
                     />
                 </div>
 
 
                 <div >
-                    <label className="font-bold text-yellow-500 text-xl" htmlFor="fabrics">Fabrics</label>
-                    <div className="grid grid-cols-7">
+                    <label className="font-bold text-yellow-500 text-2xl" htmlFor="fabrics">Fabrics</label>
+                    <div className="grid grid-cols-7 ml-20">
                         {fabricData && fabricData.map((fabric) => {
                             return <div key={fabric._id}>
                                 <input type="checkbox" value={fabric._id} onChange={handleUserInput} name="fabrics" />{fabric.fabric_name}
@@ -236,8 +236,8 @@ function ClothingForm() {
                 </div>
 
                 <div>
-                    <label className="font-bold text-yellow-500 text-xl" htmlFor="colors">Colors</label>
-                    <div className="grid grid-cols-7">
+                    <label className="font-bold text-yellow-500 text-2xl" htmlFor="colors">Colors</label>
+                    <div className="grid grid-cols-7 ml-20">
                         {colors.map((color, index) => {
                             return <div key={index}>
                                 <input type="checkbox" value={color} onChange={handleUserInput} name="colors" /> {color}
@@ -246,7 +246,7 @@ function ClothingForm() {
                     </div>
                 </div>
 
-                <button type="submit" name="submit" className='mt-2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm px-4 py-2 font-semibold text-lg cursor-pointer'>
+                <button type="submit" name="submit" className='mt-8 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm px-6 py-2 font-semibold text-lg cursor-pointer'>
                     Create Clothing
                 </button>
 

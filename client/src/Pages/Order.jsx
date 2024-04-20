@@ -72,24 +72,24 @@ function Order() {
     <HomeLayout>
       <div className="flex items-center justify-center bg-[#2e3138] h-[100vh] text-white">
         <form noValidate className="flex flex-col" onSubmit={createNewOrder}>
-          <label htmlFor="clothing_type">Clothing Type</label>
+          <label htmlFor="clothing_type" className="text-xl font-bold">Clothing Type</label>
           <input
             type="text"
             name="clothingType"
-            className="text-black"
+            className="text-black text-base p-1 rounded"
             id="clothing_type"
             readOnly
             value={orderData.clothing_type}
           />
-          <label htmlFor="fabric">Fabric</label>
+          <label htmlFor="fabric" className="text-xl mt-2 font-bold">Fabric</label>
           <select
-            className="text-black"
+            className="text-black p-1 rounded"
             name="fabric"
             id="fabric"
             onChange={handleUserInput}
             value={orderData.fabric}
           >
-            <option value="">Choose a fabric</option>
+            <option value="" selected disabled hidden>Choose a fabric</option>
             {state.fabrics.map((fabric, index) => {
               return (
                 <option
@@ -102,9 +102,9 @@ function Order() {
               );
             })}
           </select>
-          <label htmlFor="color">Color</label>
+          <label htmlFor="color" className="text-xl mt-2 font-bold">Color</label>
           <select
-            className="text-black"
+            className="text-black p-1 rounded"
             name="color"
             id="color"
             onChange={handleUserInput}
@@ -119,11 +119,11 @@ function Order() {
               );
             })}
           </select>
-          <label htmlFor="price">Rate</label>
+          <label htmlFor="price" className="text-xl mt-2 font-bold">Rate</label>
           <input
             type="text"
             name="price"
-            className="text-black"
+            className="text-black p-1 rounded"
             id="price"
             onChange={handleUserInput}
             value={orderData.rate}
@@ -131,7 +131,7 @@ function Order() {
 
           <button
             type="submit"
-            className="mt-2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm px-5 py-2 font-semibold text-lg cursor-pointer"
+            className="mt-6 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm px-8 py-2 font-semibold text-lg cursor-pointer"
           >
             CONFIRM ORDER
           </button>

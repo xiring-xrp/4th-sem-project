@@ -21,7 +21,7 @@ function ClothingList() {
     <AdminLayout>
       <div className="bg-[#2E3138] px-20 py-14 text-white">
         <Link to="/admin/clothing/create" className="font-semibold">
-          Create new clothing
+          <button className="py-2 font-bold text-yellow-500">Create new clothing</button>
         </Link>
         <table className="table-auto border-2">
           <thead>

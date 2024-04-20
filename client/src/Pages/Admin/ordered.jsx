@@ -24,9 +24,9 @@ function formatDate(dateString) {
     let count=0;
     return (
         <AdminLayout>
-            <div className="px-16 bg-[#2E3138] text-white pt-4">
-                <p className="text-center text-6xl font-bold">Orders</p>
-                <table className=" border-collapse border-2 ">
+            <div className="px-16 bg-[#2E3138] text-white pt-4 py-16">
+                <p className="text-center text-yellow-500 text-5xl font-bold">Orders</p>
+                <table className="mt-8 border-collapse border-2">
                     <thead>
                         <tr>
                             <th className="border-2 ">S.N</th>
