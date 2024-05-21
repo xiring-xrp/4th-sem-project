@@ -40,8 +40,7 @@ export const getOrderdataByUser=createAsyncThunk('order/details',async()=>{
 })
 export const updateOrderStatus=createAsyncThunk('order/status',async(data)=>{
     try{
-       console.log(data[1].orderStatus);
-        const res=axiosInstance.put(`/order/update/order_status/${data[0]}`,data[1]);
+        const res=axiosInstance.put(`/order/update/order_status/${data.orderId}`,{order_status:data.status});
         console.log((await res).data);
         return (await res).data;
 
