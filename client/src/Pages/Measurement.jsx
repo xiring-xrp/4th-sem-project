@@ -1,8 +1,7 @@
 import { useState } from "react";
-import toast from "react-hot-toast";
-import HomeLayout from "../Layouts/HomeLayout";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import HomeLayout from "../Layouts/HomeLayout";
 import { createMeasurement } from "../redux/slices/measurementSlice";
 function Measurement(){
     const dispatch = useDispatch();
@@ -38,9 +37,6 @@ function Measurement(){
         //     toast.error("Please fill all the details");
         //     return
         // }
-
-        
-
         const response = await dispatch(createMeasurement(measurementData));
         if(response?.payload?.success){
             setMeasurementData({
