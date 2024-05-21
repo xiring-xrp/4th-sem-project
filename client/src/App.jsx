@@ -13,6 +13,7 @@ import Order from "./Pages/Order"
 import Signup from "./Pages/Signup"
 import EditProfile from './Pages/User/EditProfile'
 import Profile from './Pages/User/Profile'
+import OrderHistory from "./Pages/OrderHistory/OrderHistory"
 function App() {
  
   return (
@@ -32,6 +33,7 @@ function App() {
       <Route path="/custom-clothing/order" element={<Order />}></Route>
       <Route path="/admin/ordered" element={<Ordered />} />
       {/* <Route path="/order" element={<Order />} /> */}
+      <Route path="/user/order-history" element={<OrderHistory />} />
     </Routes>
   )
 }

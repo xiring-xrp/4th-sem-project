@@ -26,6 +26,7 @@ function Profile() {
         await dispatch(getMeasurementData());
     }
     console.log(userData);
+    console.log(measurementData)
     useEffect(()=>{
         
         getDetails();
