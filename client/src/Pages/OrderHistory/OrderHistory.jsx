@@ -1,9 +1,9 @@
+import HomeLayout from "../../Layouts/HomeLayout";
+import { getOrderedData } from "../../redux/slices/orderSlice";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AdminLayout from "../../Layouts/AdminLayout";
-import { getOrderedData } from "../../redux/slices/orderSlice";
 
-function Ordered(){
+function OrderHistory(){
     const dispatch=useDispatch();
     const {orderData}=useSelector((state)=>state?.order);
     console.log(orderData);
@@ -24,57 +24,40 @@ function Ordered(){
     },[])
     
     let count=0;
-    return (
-        <AdminLayout>
+    return(
+        <HomeLayout>
             <div className="px-16 bg-[#2E3138] text-white pt-4 py-16">
-                <p className="text-center text-yellow-500 text-5xl font-bold">Orders</p>
+                <p className="text-center text-yellow-500 text-5xl font-bold">Order History</p>
                 <table className="mt-8 border-collapse border-2">
                     <thead>
                         <tr>
                             <th className="border-2 ">S.N</th>
                             <th className="border-2">Ordered Date</th>
-                            <th className="border-2">Customer Name</th>
-                            <th className="border-2">Phone number</th>
                             <th className="border-2 w-[130px]">Clothing type</th>
                             <th className="border-2 w-[60px]">Fabric</th>
                             <th className="border-2 w-[60px]">Color</th>
                             <th className="border-2 w-[60px]">Rate</th>
-                            <th className="border-2">Measurements</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {
-                        orderData.map((order,index)=>{
-                            console.log(orderData);
+                    {
+                    orderData.map((order,index)=>{
+                    console.log(orderData);
                             return <tr key={index}>
                                 <td className="border-2 pl-2 font-semibold">{++count}</td>
                                 <td className="border-2 pl-2 font-semibold">{formatDate(order.createdAt)}</td>
-                                <td className="border-2 pl-2 font-semibold">{order.userId.fullName}</td>
-                                <td className="border-2 pl-2 font-semibold">{order.userId.phoneNumber}</td>
                                 <td className="border-2 pl-2 font-semibold">{order.clothing_type}</td>
                                 <td className="border-2 pl-2 font-semibold">{order.fabric}</td>
                                 <td className="border-2 pl-2 font-semibold">{order.color}</td>
                                 <td className="border-2 pl-2 font-semibold">{order.rate}</td>
-                                <td className="border-2 pl-2 font-semibold"><ul className="grid grid-cols-4 gap-[2px]">
-                                    <li>Neck: {order.measurementId.neck}</li>
-                                    <li>sleeves Length: {order.measurementId.sleevesLength}</li>
-                                    <li>Bicep Around: {order.measurementId.bicepAround}</li>
-                                    <li>Hips: {order.measurementId.hips}</li>
-                                    <li>Stomach: {order.measurementId.stomach}</li>
-                                    <li>Thigh: {order.measurementId.thigh}</li>
-                                    <li>Shoulder Width: {order.measurementId.shoulderWidth}</li>
-                                    <li>Chest Around: {order.measurementId.chestAround}</li>
-                                    <li>Pants Waist: {order.measurementId.pantsWaist}</li>
-                                    <li>LegLength: {order.measurementId.legLength}</li>
-                                    </ul></td>
                             </tr>
                         })
-                       }
+                    }
                     </tbody>
                 </table>
             </div>
-        </AdminLayout>
+        </HomeLayout>
     )
 }
 
-export default Ordered;
+export default OrderHistory;
