@@ -43,7 +43,7 @@ function formatDate(dateString) {
                     <tbody>
                        {
                         orderData.map((order,index)=>{
-                            console.log(order.userId.fullName);
+                            console.log(orderData);
                             return <tr key={index}>
                                 <td className="border-2 pl-2 font-semibold">{++count}</td>
                                 <td className="border-2 pl-2 font-semibold">{formatDate(order.createdAt)}</td>

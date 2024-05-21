@@ -36,8 +36,9 @@ const orderSlice=createSlice({
     extraReducers:(builder)=>{
         builder
         .addCase(getOrderedData.fulfilled,(state,action)=>{
-         console.log(action.payload)
+         console.log(action.payload.orders)
             state.orderData=[...action.payload.orders];
+
         })
     }
 })

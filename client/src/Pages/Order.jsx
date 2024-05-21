@@ -27,7 +27,7 @@ function Order() {
     color: "",
     rate: "",
   });
- 
+ console.log(measureData)
   const handleUserInput = (e) => {
     const { name, value } = e.target;
     setOrderData({

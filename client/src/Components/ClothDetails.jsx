@@ -16,6 +16,7 @@ function ClothDetails() {
             navigate('/custom-clothing/order', { state: { ...state } });
         }
     }
+    console.log(data)
     return (
         <HomeLayout>
             <div className="min-h-[75vh] pt-12 bg-[#2e3138] px-20 flex flex-col items-center justify-center text-white">

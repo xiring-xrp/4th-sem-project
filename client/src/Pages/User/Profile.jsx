@@ -25,10 +25,12 @@ function Profile() {
         await dispatch(getUserData());
         await dispatch(getMeasurementData());
     }
+    console.log(userData);
     useEffect(()=>{
         
         getDetails();
     },[])
+   
     return (
         <HomeLayout>
             <div className="min-h-[90vh] bg-[#2e3138] flex items-center justify-center">
@@ -44,22 +46,22 @@ function Profile() {
                         <p>Email: </p><p>{userData?.email}</p>
                         <p>Role: </p><p>{userData?.role}</p>
                         <p>Measurement: </p><p>
-                            <p>Neck:{measurementData.neck}</p>
-                            <p>Sleeves Length:{measurementData.sleevesLength}</p>
-                            <p>Shoulder Width: {measurementData.shoulderWidth}</p>
-                            <p>Chest Around: {measurementData.chestAround}</p>
-                            <p>Stomach {measurementData.stomach}</p>
-                            <p>Leg Length {measurementData.legLength}</p>
-                            <p>Pants Waist {measurementData.pantsWaist}</p>
-                            <p>Hips: {measurementData.hips}</p>
-                            <p>Bicep Around: {measurementData.bicepAround}</p>
-                            <p>Thigh: {measurementData.thigh}</p>
+                            <p>Neck:{userData.measurementId.neck}</p>
+                            <p>Sleeves Length:{userData.measurementId.sleevesLength}</p>
+                            <p>Shoulder Width: {userData.measurementId.shoulderWidth}</p>
+                            <p>Chest Around: {userData.measurementId.chestAround}</p>
+                            <p>Stomach {userData.measurementId.stomach}</p>
+                            <p>Leg Length {userData.measurementId.legLength}</p>
+                            <p>Pants Waist {userData.measurementId.pantsWaist}</p>
+                            <p>Hips: {userData.measurementId.hips}</p>
+                            <p>Bicep Around: {userData.measurementId.bicepAround}</p>
+                            <p>Thigh: {userData.measurementId.thigh}</p>
                         </p>
                         {/* <p>Subscription: </p>
                         <p>{userData?.subscription?.status === "active" ? "Action" : "Inactive"}</p> */}
                     </div>
                     <div className="flex items-center justify-between gap-2">
-                      {measurementData.length==0?(
+                      {measurementData.length === 0?(
                           <Link 
                           to="/measurement/add" 
                           className="w-1/2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-2 cursor-pointer text-center">
