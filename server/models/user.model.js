@@ -88,7 +88,7 @@ userSchema.methods = {
         const resetToken = crypto.randomBytes(20).toString('hex');
        
         this.forgetPasswordToken = crypto.createHash('sha256').update(resetToken).digest('hex');
-        this.fotgerPasswordExpiry = Date.now() + 15*60*1000;
+        this.fotgerPasswordExpiry = Date.now() + 24*60*1000;
 
         return resetToken
 
