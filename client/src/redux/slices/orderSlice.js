@@ -29,6 +29,26 @@ export const getOrderedData = createAsyncThunk("/user/details", async () => {
       toast.error(error.message);
     }
   });
+export const getOrderdataByUser=createAsyncThunk('order/details',async()=>{
+    try{
+        const res=axiosInstance.get("/orderHistory/getOrderHistory");
+        
+        return (await res).data;
+    }catch(error){
+        toast.error(error.message);
+    }
+})
+export const updateOrderStatus=createAsyncThunk('order/status',async(data)=>{
+    try{
+       console.log(data[1].orderStatus);
+        const res=axiosInstance.put(`/order/update/order_status/${data[0]}`,data[1]);
+        console.log((await res).data);
+        return (await res).data;
+
+    }catch(error){
+        toast.error(error.message)
+    }
+})
 const orderSlice=createSlice({
     name:'order',
     initialState,
@@ -40,6 +60,13 @@ const orderSlice=createSlice({
             state.orderData=[...action.payload.orders];
 
         })
+        .addCase(getOrderdataByUser.fulfilled,(state,action)=>{
+            console.log(action.payload);
+            state.orderData=[...action.payload.order];
+        })
+        // .addCase(updateOrderStatus,(state,action)=>{
+        //     state.orderData=[...action.payload.order];
+        // })
     }
 })
 export default orderSlice.reducer;

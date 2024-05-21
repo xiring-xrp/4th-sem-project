@@ -1,14 +1,14 @@
-import HomeLayout from "../../Layouts/HomeLayout";
-import { getOrderedData } from "../../redux/slices/orderSlice";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import HomeLayout from "../../Layouts/HomeLayout";
+import { getOrderdataByUser } from "../../redux/slices/orderSlice";
 
 function OrderHistory(){
     const dispatch=useDispatch();
     const {orderData}=useSelector((state)=>state?.order);
-    console.log(orderData);
+
     async function getAllOrders(){
-        await dispatch(getOrderedData());
+        await dispatch(getOrderdataByUser());
     }
     
     function formatDate(dateString) {
@@ -22,7 +22,7 @@ function OrderHistory(){
     useEffect(()=>{
        getAllOrders()
     },[])
-    
+    console.log(orderData);
     let count=0;
     return(
         <HomeLayout>
@@ -37,6 +37,7 @@ function OrderHistory(){
                             <th className="border-2 w-[60px]">Fabric</th>
                             <th className="border-2 w-[60px]">Color</th>
                             <th className="border-2 w-[60px]">Rate</th>
+                            <th className="border-2 w-[60px]">Order Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +51,7 @@ function OrderHistory(){
                                 <td className="border-2 pl-2 font-semibold">{order.fabric}</td>
                                 <td className="border-2 pl-2 font-semibold">{order.color}</td>
                                 <td className="border-2 pl-2 font-semibold">{order.rate}</td>
+                                <td className="border-2 pl-2 font-semibold">{order.order_status}</td>
                             </tr>
                         })
                     }

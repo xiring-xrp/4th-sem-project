@@ -56,9 +56,16 @@ const makeOrder = async (req , res , next) =>{
         }
     
     }
+    const updateOrderStatus=async(req,res,next)=>{
+        const orderId=req.params.orderId;
+        const {orderStatus}=req.body
+        console.log(req.body.orderStatus);
+        console.log(orderId);
+        
+    }
 
 
 export {
-    getAllorders, makeOrder
+    getAllorders, makeOrder, updateOrderStatus
 };
 
