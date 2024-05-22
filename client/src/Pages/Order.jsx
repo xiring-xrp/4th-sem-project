@@ -26,6 +26,7 @@ function Order() {
     fabric: "",
     color: "",
     rate: "",
+    price: "",
   });
  console.log(measureData)
   const handleUserInput = (e) => {
@@ -63,6 +64,7 @@ function Order() {
         fabric: "",
         color: "",
         rate: "",
+        price: "",
       });
       navigate("/custom-clothing");
     }
@@ -119,14 +121,24 @@ function Order() {
               );
             })}
           </select>
-          <label htmlFor="price" className="text-xl mt-2 font-bold">Rate</label>
+          <label htmlFor="rate" className="text-xl mt-2 font-bold">Rate</label>
           <input
             type="text"
-            name="price"
+            name="rate"
             className="text-black p-1 rounded"
-            id="price"
+            id="rate"
             onChange={handleUserInput}
             value={orderData.rate}
+          />
+
+          <label htmlFor="price" className="text-xl mt-2 font-bold ">Price</label>
+          <input 
+            type="text" 
+            name="price"
+            className="text-black p-1 rounded "
+            id="price"
+            onChange={handleUserInput}
+            value={orderData.price}
           />
 
           <button

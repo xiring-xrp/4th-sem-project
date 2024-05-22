@@ -31,7 +31,6 @@ function ClothingList() {
               <th className="w-[150px] border-2">Clothings Name</th>
               <th className="w-[125px] border-2">Fabrics</th>
               <th className="w-[125px] border-2">Colors</th>
-             
             </tr>
           </thead>
           <tbody>
