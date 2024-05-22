@@ -41,19 +41,23 @@ function OrderHistory(){
                         </tr>
                     </thead>
                     <tbody>
-                    {
-                    orderData.map((order,index)=>{
-                    console.log(orderData);
-                            return <tr key={index}>
-                                <td className="border-2 pl-2 font-semibold">{++count}</td>
-                                <td className="border-2 pl-2 font-semibold">{formatDate(order.createdAt)}</td>
-                                <td className="border-2 pl-2 font-semibold">{order.clothing_type}</td>
-                                <td className="border-2 pl-2 font-semibold">{order.fabric}</td>
-                                <td className="border-2 pl-2 font-semibold">{order.color}</td>
-                                <td className="border-2 pl-2 font-semibold">{order.rate}</td>
-                                <td className="border-2 pl-2 font-semibold">{order.order_status}</td>
-                            </tr>
-                        })
+                    {orderData&&orderData.length>0?
+                    (
+                        orderData.map((order,index)=>{
+                            console.log(orderData);
+                                    return <tr key={index}>
+                                        <td className="border-2 pl-2 font-semibold">{++count}</td>
+                                        <td className="border-2 pl-2 font-semibold">{formatDate(order.createdAt)}</td>
+                                        <td className="border-2 pl-2 font-semibold">{order.clothing_type}</td>
+                                        <td className="border-2 pl-2 font-semibold">{order.fabric}</td>
+                                        <td className="border-2 pl-2 font-semibold">{order.color}</td>
+                                        <td className="border-2 pl-2 font-semibold">{order.rate}</td>
+                                        <td className="border-2 pl-2 font-semibold">{order.order_status}</td>
+                                    </tr>
+                                })
+                    ):(
+                        <tr>You have no orders</tr>
+                    )
                     }
                     </tbody>
                 </table>

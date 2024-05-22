@@ -10,10 +10,10 @@ import HomePage from "./Pages/HomePage"
 import Login from './Pages/Login'
 import Measurement from './Pages/Measurement'
 import Order from "./Pages/Order"
+import OrderHistory from "./Pages/OrderHistory/OrderHistory"
 import Signup from "./Pages/Signup"
 import EditProfile from './Pages/User/EditProfile'
 import Profile from './Pages/User/Profile'
-import OrderHistory from "./Pages/OrderHistory/OrderHistory"
 function App() {
  
   return (
@@ -25,12 +25,12 @@ function App() {
       <Route path="/user/profile" element={<Profile />}></Route>
       <Route path="/user/editprofile" element={<EditProfile />}></Route>
       <Route path="/custom-clothing" element={<CollectionCard />}></Route>
-      <Route path="/custom-clothing/clothing-categories-list/details" element={<ClothDetails />}></Route>
+      <Route path="/custom-clothing/clothing-categories-list/details/:clothing" element={<ClothDetails />}></Route>
       <Route path="/admin" element={<AdminDashboard />}></Route>
       <Route path="/admin/clothing" element={<ClothingList/>}></Route>
       <Route path="/admin/clothing/create" element={<ClothingForm/>}></Route>
       <Route path="/custom-clothing/clothing-categories-list" element={<ClothingCategoryList/>}></Route>
-      <Route path="/custom-clothing/order" element={<Order />}></Route>
+      <Route path="/custom-clothing/order/:clothing" element={<Order />}></Route>
       <Route path="/admin/ordered" element={<Ordered />} />
       {/* <Route path="/order" element={<Order />} /> */}
       <Route path="/user/order-history" element={<OrderHistory />} />

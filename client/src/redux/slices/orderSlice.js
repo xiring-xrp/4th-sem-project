@@ -55,17 +55,14 @@ const orderSlice=createSlice({
     extraReducers:(builder)=>{
         builder
         .addCase(getOrderedData.fulfilled,(state,action)=>{
-         console.log(action.payload.orders)
-            state.orderData=[...action.payload.orders];
-
+         if(action?.payload?.orders){
+             state.orderData=[...action.payload.orders];
+         }
         })
         .addCase(getOrderdataByUser.fulfilled,(state,action)=>{
             console.log(action.payload);
             state.orderData=[...action.payload.order];
         })
-        // .addCase(updateOrderStatus,(state,action)=>{
-        //     state.orderData=[...action.payload.order];
-        // })
     }
 })
 export default orderSlice.reducer;
