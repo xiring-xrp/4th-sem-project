@@ -71,7 +71,7 @@ function Measurement(){
                             <div>
                                 <label htmlFor="neck">NECK</label><br />
                                     <input 
-                                        className="text-black rounded-sm pl-1 w-14" 
+                                        className="text-black rounded-sm pl-1 w-16" 
                                         type="text" 
                                         required
                                         name="neck"
@@ -79,7 +79,7 @@ function Measurement(){
                                         onChange={handleUserInput}
                                         value={measurementData.neck}
                                     /> 
-                                    <p className="text-black font-bold relative bottom-6 left-8">cm</p>
+                                    <p className="text-black font-bold relative bottom-6 left-10">cm</p>
                             </div>
                         
                             <div>
@@ -87,26 +87,26 @@ function Measurement(){
                                 <input 
                                     type="text"
                                     required
-                                    className="text-black rounded-sm pl-1 w-14"
+                                    className="text-black rounded-sm pl-1 w-16"
                                     name="sleevesLength"
                                     id="sleeves_length"
                                     onChange={handleUserInput}
                                     value={measurementData.sleevesLength}
                                 /> 
-                                <p className="text-black font-bold relative bottom-6 left-8">cm</p>
+                                <p className="text-black font-bold relative bottom-6 left-10">cm</p>
                             </div>
                             <div>
                                 <label htmlFor="shoulder_width" className="mt-2">SHOULDER WIDTH</label> <br />
                                 <input 
                                     type="text"
                                     required
-                                    className="text-black rounded-sm pl-1 w-14"
+                                    className="text-black rounded-sm pl-1 w-16"
                                     name="shoulderWidth"
                                     id="shoulder_width"
                                     onChange={handleUserInput}
                                     value={measurementData.shoulderWidth}
                                 />
-                                <p className="text-black font-bold relative bottom-6 left-8">cm</p>
+                                <p className="text-black font-bold relative bottom-6 left-10">cm</p>
                             </div>
 
                             <div>
@@ -114,13 +114,13 @@ function Measurement(){
                                 <input 
                                     type="text"
                                     required
-                                    className="text-black rounded-sm pl-1 w-14"
+                                    className="text-black rounded-sm pl-1 w-16"
                                     name="chestAround"
                                     id="chest_around"
                                     onChange={handleUserInput}
                                     value={measurementData.chestAround}
                                 />
-                                <p className="text-black font-bold relative bottom-6 left-8">cm</p>
+                                <p className="text-black font-bold relative bottom-6 left-10">cm</p>
                             </div>
 
                             <div>
@@ -129,12 +129,12 @@ function Measurement(){
                                     type="text"
                                     required
                                     name="stomach"
-                                    className="text-black rounded-sm pl-1 w-14"
+                                    className="text-black rounded-sm pl-1 w-16"
                                     id="stomach"
                                     onChange={handleUserInput}
                                     value={measurementData.stomach}
                                 />
-                                <p className="text-black font-bold relative bottom-6 left-8">cm</p>
+                                <p className="text-black font-bold relative bottom-6 left-10">cm</p>
                             </div>
                         </div>
   
@@ -143,7 +143,7 @@ function Measurement(){
                         <div>
                             <div>
                                 <label htmlFor="leg_length" className="mt-2">LEG LENGTH</label> <br />
-                                <input className="text-black rounded-sm pl-1 w-14"
+                                <input className="text-black rounded-sm pl-1 w-16"
                                     type="text"
                                     required
                                     name="legLength"
@@ -151,7 +151,7 @@ function Measurement(){
                                     onChange={handleUserInput}
                                     value={measurementData.legLength}
                                 />
-                                <p className="text-black font-bold relative bottom-6 left-8">cm</p>
+                                <p className="text-black font-bold relative bottom-6 left-10">cm</p>
                             </div>
 
                             <div>
@@ -159,13 +159,13 @@ function Measurement(){
                                 <input 
                                     type="text"
                                     required
-                                    className="text-black rounded-sm pl-1 w-14"
+                                    className="text-black rounded-sm pl-1 w-16"
                                     name="pantsWaist"
                                     id="pants_waist"
                                     onChange={handleUserInput}
                                     value={measurementData.pantsWaist}
                                 />
-                                <p className="text-black font-bold relative bottom-6 left-8">cm</p>
+                                <p className="text-black font-bold relative bottom-6 left-10">cm</p>
                             </div>
 
                             <div>
@@ -173,13 +173,13 @@ function Measurement(){
                                 <input 
                                     type="text"
                                     required
-                                    className="text-black rounded-sm pl-1 w-14"
+                                    className="text-black rounded-sm pl-1 w-16"
                                     name="hips"
                                     id="hips"
                                     onChange={handleUserInput}
                                     value={measurementData.hips}
                                 />
-                                <p className="text-black font-bold relative bottom-6 left-8">cm</p>
+                                <p className="text-black font-bold relative bottom-6 left-10">cm</p>
                             </div>
 
                             <div>
@@ -187,13 +187,13 @@ function Measurement(){
                                 <input 
                                     type="text"
                                     required
-                                    className="text-black rounded-sm pl-1 w-14"
+                                    className="text-black rounded-sm pl-1 w-16"
                                     name="bicepAround"
                                     id="bicep_around"
                                     onChange={handleUserInput}
                                     value={measurementData.bicepAround}
                                 /> 
-                                <p className="text-black font-bold relative bottom-6 left-8">cm</p>
+                                <p className="text-black font-bold relative bottom-6 left-10">cm</p>
                             </div>
 
                             <div>
@@ -201,13 +201,13 @@ function Measurement(){
                                 <input 
                                     type="text"
                                     required
-                                    className="text-black rounded-sm pl-1 w-14"
+                                    className="text-black rounded-sm pl-1 w-16"
                                     name="thigh"
                                     id="thigh"
                                     onChange={handleUserInput}
                                     value={measurementData.thigh}
                                 /> 
-                                <p className="text-black font-bold relative bottom-6 left-8">cm</p>
+                                <p className="text-black font-bold relative bottom-6 left-10">cm</p>
                             </div>
                         </div>
                     </div>

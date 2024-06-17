@@ -31,6 +31,7 @@ function ClothingList() {
               <th className="w-[150px] border-2">Clothings Name</th>
               <th className="w-[125px] border-2">Fabrics</th>
               <th className="w-[125px] border-2">Colors</th>
+              <th className="w-[195px] border-2">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -57,11 +58,15 @@ function ClothingList() {
                         <p key={i}>{color}</p>
                       ))}
                     </td>
-                   
+                    <td className="border-[2px] pl-4 ">
+                      <button className="px-6 py-1 bg-green-600 rounded cursor-pointer hover:bg-green-700 mr-2 ">edit</button>
+                      <button className="px-4 py-1 bg-red-600 rounded cursor-pointer hover:bg-red-700 ">delete</button>
+                    </td>
                   </tr>
                 ))}
               </React.Fragment>
             ))}
+            
           </tbody>
         </table>
       </div>

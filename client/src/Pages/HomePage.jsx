@@ -44,13 +44,6 @@ function HomePage() {
                             <img className="rounded-full" alt="homepage image" src={Tailors} />
                         </div>
                 </div>
-
-                <div className="carousel flex h-[550px] ">
-                {images.map((image,index)=>{
-                    // return <img src={image} key={index}/>
-                    return <CarouselSlide img={image} key={index} slideNumber={index+1} totalSlides={images.length}/>
-                })}  
-            </div>  
             </div>
 
         </HomeLayout>

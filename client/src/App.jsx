@@ -14,6 +14,7 @@ import Signup from "./Pages/Signup"
 import EditProfile from './Pages/User/EditProfile'
 import Profile from './Pages/User/Profile'
 import OrderHistory from "./Pages/OrderHistory/OrderHistory"
+import AboutUs from "./Pages/AboutUs"
 function App() {
  
   return (
@@ -34,6 +35,7 @@ function App() {
       <Route path="/admin/ordered" element={<Ordered />} />
       {/* <Route path="/order" element={<Order />} /> */}
       <Route path="/user/order-history" element={<OrderHistory />} />
+      <Route path="/about-us" element={<AboutUs />}></Route>
     </Routes>
   )
 }
