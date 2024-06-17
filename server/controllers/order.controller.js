@@ -56,9 +56,24 @@ const makeOrder = async (req , res , next) =>{
         }
     
     }
+    const updateOrderStatus=async(req,res,next)=>{
+        const orderId=req.params.orderId;
+        const {order_status}=req.body
+        try{
+            const order=await Order.findByIdAndUpdate(orderId,{order_status});
+            res.status(200).json({
+                success:true,
+                message:"Status updated successfully",
+                order
+            })
+        }catch(error){
+            return next(new AppError(error.message,500));
+        }
+        
+    }
 
 
 export {
-    getAllorders, makeOrder
+    getAllorders, makeOrder, updateOrderStatus
 };
 

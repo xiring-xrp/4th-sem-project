@@ -21,6 +21,12 @@ const OrderSchema = new Schema({
     type:String ,
     required:true
    },
+
+   order_status:{
+    type:String,
+    enum:['Processing','Completed'],
+    default:'Processing'
+   },
     status:{
         type:Boolean,
         default:true

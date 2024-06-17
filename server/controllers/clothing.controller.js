@@ -116,10 +116,4 @@ const createNewClothing = async (req, res, next) => {
     }
 };
 
-    
-
-
-
-
-
-export { getAllClothings, createNewClothing }
+export { getAllClothings, createNewClothing }  

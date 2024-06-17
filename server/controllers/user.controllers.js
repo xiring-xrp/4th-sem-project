@@ -95,7 +95,7 @@ const login = async (req, res, next) => {
         if (!email || !password) {
             return next(new AppError('all fields required', 400));
         }
-        const user = await User.findOne({ email }).select('+password');
+        const user = await User.findOne({ email }).populate('measurementId').select('+password');
         if (!user || !user.comparePassword(password)) {
             return next(new AppError('User with given email does not exist', 400))
         }
@@ -325,3 +325,4 @@ export {
     logout,
     register, resetPassword, updateUser
 };
+

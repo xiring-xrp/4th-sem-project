@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
 import HomeLayout from "../Layouts/HomeLayout";
 
 function ClothDetails() {
-
+    const{clothing}=useParams();
+    console.log(clothing);
     const { state } = useLocation();
     const navigate = useNavigate();
 
@@ -13,10 +14,10 @@ function ClothDetails() {
         if (data.measurementId === undefined) {
             navigate('/measurement/add');
         } else {
-            navigate('/custom-clothing/order', { state: { ...state } });
+            navigate(`/custom-clothing/order/${clothing}`, { state: { ...state } });
         }
     }
-    console.log(data)
+    
     return (
         <HomeLayout>
             <div className="min-h-[75vh] pt-12 bg-[#2e3138] px-20 flex flex-col items-center justify-center text-white">

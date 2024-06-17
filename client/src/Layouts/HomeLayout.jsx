@@ -1,5 +1,5 @@
-import {AiFillCloseCircle} from 'react-icons/ai';
-import {FiMenu} from 'react-icons/fi';
+import { AiFillCloseCircle } from 'react-icons/ai';
+import { FiMenu } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -85,6 +85,10 @@ function HomeLayout({ children }) {
                         <li>
                             <Link to="/custom-clothing">Custom Clothing</Link>
                         </li>
+                        <li>
+                            <Link to="/user/order-history">My Orders</Link>
+                        </li>
+
 
 
                         {!isLoggedIn && (
