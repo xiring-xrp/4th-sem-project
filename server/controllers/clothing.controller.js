@@ -115,5 +115,14 @@ const createNewClothing = async (req, res, next) => {
         return next(new AppError('Clothing could not be created', 400));
     }
 };
+const deleteClothing = async (req, res) => {
+    try {
+      const { id } = req.params;
+      await Clothing.findByIdAndDelete(id);
+      res.status(200).json({ success: true, message: 'Clothing item deleted successfully' });
+    } catch (error) {
+      res.status(500).json({ success: false, message: 'Failed to delete clothing item', error: error.message });
+    }
+  };
 
-export { getAllClothings, createNewClothing }  
+export { getAllClothings, createNewClothing,deleteClothing }  

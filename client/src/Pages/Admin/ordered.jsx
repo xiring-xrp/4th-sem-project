@@ -27,7 +27,7 @@ function Ordered() {
     const day = String(date.getDate()).padStart(2, "0");
     return `${year}/${month}/${day}`;
   };
-
+  console.log(orderData)
   let count = 0;
   return (
     <AdminLayout>
@@ -50,7 +50,7 @@ function Ordered() {
             </tr>
           </thead>
           <tbody>
-            {orderData.map((order, index) => (
+            {orderData.map(( order ) => (
               <tr key={order._id}>
                 <td className="border-2 pl-2 font-semibold">{++count}</td>
                 <td className="border-2 pl-2 font-semibold">{formatDate(order.createdAt)}</td>

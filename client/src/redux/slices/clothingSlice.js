@@ -13,6 +13,21 @@ export const getAllClothings=createAsyncThunk("clothing/getAll",async()=>{
         toast.error(error?.response?.data?.message);
     }
 })
+export const deleteClothing = createAsyncThunk(
+    'clothing/deleteClothing',
+    async (id) => {
+      await axiosInstance.delete(`/clothing/delete/${id}`);
+      return id;
+    }
+  );
+  export const getClothing = createAsyncThunk('clothing/getClothing', async (id) => {
+    const response = await axios.get(`/api/clothings/${id}`);
+    return response.data;
+  });
+  export const updateClothing = createAsyncThunk('clothing/updateClothing', async ({ id, formData }) => {
+    const response = await axios.put(`/api/clothing/edit/${id}`, formData);
+    return response.data;
+  });
 export const createClothing=createAsyncThunk("cloting/create",async(data)=>{
     try{
         const res=axiosInstance.post("/clothing/create",data);
@@ -40,6 +55,9 @@ const clothingSlice=createSlice({
                 state.clothingData=[...action.payload];
             }
         })
+        .addCase(updateClothing.fulfilled, (state, action) => {
+            state.clothingData = state.clothingData.map(cloth => (cloth._id === action.payload._id ? action.payload : cloth));
+          })
     }
 })
 export default clothingSlice.reducer;

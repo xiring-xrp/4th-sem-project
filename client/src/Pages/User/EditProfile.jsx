@@ -9,6 +9,12 @@ import HomeLayout from "../../Layouts/HomeLayout";
 import { getUserData, updateProfile } from "../../redux/slices/authSlice";
 
 function EditProfile() {
+    // for checking if user is logged in
+    const isLoggedIn = useSelector((state) => state?.auth?.isLoggedIn);
+
+    // for displaying the options acc to role
+    const role = useSelector((state) => state?.auth?.role);
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [data, setData] = useState({
@@ -110,11 +116,22 @@ function EditProfile() {
                     <button type="submit" className="w-full bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 text-lg cursor-pointer">
                         Update profile
                     </button>
-                    <Link to="/user/profile">
-                        <p className="link text-accent cursor-pointer flex items-center justify-center w-full gap-2">
-                            <AiOutlineArrowLeft /> Go back to profile
-                        </p>
-                    </Link>
+                    
+                    {isLoggedIn && role === "USER" && (
+                        <Link to="/user/profile">
+                            <p className="link text-accent cursor-pointer flex items-center justify-center w-full gap-2">
+                                <AiOutlineArrowLeft /> Go back to profile
+                            </p>
+                        </Link>
+                    )}
+                    
+                    {isLoggedIn && role === "ADMIN" && (
+                        <Link to="/admin/profile">
+                            <p className="link text-accent cursor-pointer flex items-center justify-center w-full gap-2">
+                                <AiOutlineArrowLeft /> Go back to profile
+                            </p>
+                        </Link>
+                    )}
                 </form>
             </div>
         </HomeLayout>

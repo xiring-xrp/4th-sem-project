@@ -26,9 +26,10 @@ function OrderHistory(){
     let count=0;
     return(
         <HomeLayout>
-            <div className="px-16 bg-[#2E3138] text-white pt-4 py-16">
+            <div className="px-16 bg-[#2E3138] h-[100vh] text-white pt-15 py-16">
                 <p className="text-center text-yellow-500 text-5xl font-bold">Order History</p>
-                <table className="mt-8 border-collapse border-2">
+                <div  className="flex justify-center h-[150px]">
+                <table className="mt-10 border-collapse border-2">
                     <thead>
                         <tr>
                             <th className="border-2 ">S.N</th>
@@ -61,6 +62,7 @@ function OrderHistory(){
                     }
                     </tbody>
                 </table>
+                </div>
             </div>
         </HomeLayout>
     )
