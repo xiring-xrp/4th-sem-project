@@ -18,6 +18,7 @@ function Signup() {
     const [signupData, setSignupData] = useState({
         fullName: "",
         email: "",
+        phoneNumber:"",
         password: "",
         avatar: ""
     });
@@ -51,7 +52,7 @@ function Signup() {
 
     async function createNewAccount(event) {
         event.preventDefault();
-        if(!signupData.email || !signupData.password || !signupData.fullName || !signupData.avatar) {
+        if(!signupData.email || !signupData.password || !signupData.fullName || !signupData.avatar || !signupData.phoneNumber) {
             toast.error("Please fill all the details");
             return;
         }
@@ -76,6 +77,7 @@ function Signup() {
         formData.append("fullName", signupData.fullName);
         formData.append("email", signupData.email);
         formData.append("password", signupData.password);
+        formData.append("phoneNumber", signupData.phoneNumber);
         formData.append("avatar", signupData.avatar);
 
         // dispatch create account action
@@ -87,7 +89,8 @@ function Signup() {
             fullName: "",
             email: "",
             password: "",
-            avatar: ""
+            avatar: "",
+            phoneNumber:""
         });
         setPreviewImage("");
         navigate("/login");
@@ -127,6 +130,19 @@ function Signup() {
                             className="bg-transparent px-2 py-1 border"
                             onChange={handleUserInput}
                             value={signupData.fullName}
+                        />
+                    </div>
+                    <div className='flex flex-col gap-1'>
+                        <label htmlFor="phoneNumber" className='font-semibold'> Phone Number </label>
+                        <input 
+                            type="text" 
+                            required
+                            name="phoneNumber"
+                            id="phoneNumber"
+                            placeholder="Enter your phoneNumber"
+                            className="bg-transparent px-2 py-1 border"
+                            onChange={handleUserInput}
+                            value={signupData.phoneNumber}
                         />
                     </div>
                     <div className='flex flex-col gap-1'>

@@ -10,7 +10,9 @@ import errormiddleware from './middlewares/error.middleware.js';
 import clothingRoutes from './routes/clothing.routes.js'
 import fabricRouter from './routes/fabric.routes.js';
 import orderRouter from './routes/order.routes.js';
-import takeMeasurment from './routes/measurment.routes.js'
+import measurementRouter from './routes/measurment.routes.js'
+import getOrderHistory from './routes/orderHistory.routes.js';
+
 
 
 app.use(express.json());
@@ -30,7 +32,10 @@ app.use('/api/v1/user',useroutes );
 app.use('/api/v1/clothing',clothingRoutes );
 app.use('/api/v1/fabric',fabricRouter);
 app.use('/api/v1/order',orderRouter);
-app.use('/api/v1/measurement',takeMeasurment);
+app.use('/api/v1/measurement',measurementRouter);
+app.use('/api/v1/orderHistory', getOrderHistory)
+
+
 
 
 app.all('*',(req, res) =>{

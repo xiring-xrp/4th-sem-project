@@ -6,13 +6,29 @@ const initialState={
     measureData:[]
 }
 
+  
+
 const measurementSlice=createSlice({
     name:'measurement',
     initialState,
     reducers:{},
     extraReducers:(builder)=>{
+        builder
+        .addCase(getMeasurementData.fulfilled, (state, action) => {
+            console.log(action?.payload)
+            if(action?.payload){
+                state.measureData=action.payload
+                
+            }
 
+          })
     }
+})
+export const getMeasurementData = createAsyncThunk("/user/measurements", async () => {
+    console.log("Hello");
+    const res = axiosInstance.get("/measuremen                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      t/getMeasurement");
+     console.log((await res).data.measurement)
+    return (await res)?.data.measurement;
 })
 export const createMeasurement=createAsyncThunk("measurement/create",async(data)=>{
     try{

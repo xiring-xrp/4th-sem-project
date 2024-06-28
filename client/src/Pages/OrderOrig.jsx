@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import HomeLayout from "../Layouts/HomeLayout";
 import { getUserData } from "../redux/slices/authSlice";
 import { getMeasurementData } from "../redux/slices/measurementSlice";
@@ -8,43 +8,27 @@ import { createOrder } from "../redux/slices/orderSlice";
 
 function Order() {
   const { state } = useLocation();
-  const { clothing } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const measureData = useSelector((state) => state?.measurement?.measureData);
+  const measureData = useSelector((state) => state?.measurement.measureData);
   const userData = useSelector((state) => state?.auth?.data);
-
   async function getDetails() {
     await dispatch(getMeasurementData());
     await dispatch(getUserData());
   }
-
   useEffect(() => {
     getDetails();
   }, []);
-
-  useEffect(() => {
-    if (userData && state) {
-      setOrderData((prevData) => ({
-        ...prevData,
-        userId: userData._id,
-        measurementId: userData.measurementId,
-        clothing_type: state.clothing_type,
-      }));
-    }
-  }, [userData, state, clothing]);
-
   const [orderData, setOrderData] = useState({
-    userId:"",
-    measurementId:"",
-    clothing_type: "",
+    userId:userData._id,
+    measurementId:userData.measurementId,
+    clothing_type: state.clothing_type,
     fabric: "",
     color: "",
     rate: "",
     price: "",
-    length: ""
   });
-
+ console.log(measureData)
   const handleUserInput = (e) => {
     const { name, value } = e.target;
     setOrderData({
@@ -52,74 +36,34 @@ function Order() {
       [name]: value,
     });
   };
-
   function rateGenerator() {
     if (orderData.fabric !== "") {
       const fabric = orderData.fabric;
       const fab = state.fabrics.filter(
         (item) => item.fabricId.fabric_name === fabric
       );
-      if (fab.length > 0) {
-        setOrderData((prevData) => ({
-          ...prevData,
-          rate: fab[0].fabricId.rate,
-        }));
-      }
+      setOrderData({
+        ...orderData,
+        rate: fab[0].fabricId.rate,
+      });
     }
   }
-
-  function calculateLength() {
-    let fabricLength = 0;
-    if (userData.measurementId) {
-      if (clothing === 'Suits') {
-        fabricLength = (2 * parseInt(userData.measurementId.sleevesLength) + 6) / 100;
-      } else if (clothing === 'Pants') {
-        fabricLength = (2 * (parseInt(userData.measurementId.legLength) + parseInt(userData.measurementId.thigh)) + 6)/100 ;
-        console.log(fabricLength)
-      }
-      setOrderData((prevData) => ({
-        ...prevData,
-        length: fabricLength,
-      }));
-    }
-  }
-
-  function calculatePrice() {
-    const { rate, length } = orderData;
-    if (rate && length) {
-      const price = rate * length;
-      setOrderData((prevData) => ({
-        ...prevData,
-        price,
-      }));
-    }
-  }
-
   useEffect(() => {
     rateGenerator();
   }, [orderData.fabric]);
-
-  useEffect(() => {
-    calculateLength();
-  }, [userData, clothing]);
-
-  useEffect(() => {
-    calculatePrice();
-  }, [orderData.rate, orderData.length]);
-
   async function createNewOrder(event) {
     event.preventDefault();
-    const response = await dispatch(createOrder(orderData));
 
+    const response = await dispatch(createOrder(orderData));
+    console.log(response.payload.success);
     if (response?.payload.success) {
       setOrderData({
-        userId: userData._id,
-        measurementId: userData.measurementId,
+        userId:userData._id,
+        measurementId:userData.measurementId,
         clothing_type: state.clothing_type,
         fabric: "",
         color: "",
         rate: "",
-        length: "",
         price: "",
       });
       navigate("/custom-clothing");
@@ -133,7 +77,7 @@ function Order() {
           <label htmlFor="clothing_type" className="text-xl font-bold">Clothing Type</label>
           <input
             type="text"
-            name="clothing_type"
+            name="clothingType"
             className="text-black text-base p-1 rounded"
             id="clothing_type"
             readOnly
@@ -147,16 +91,18 @@ function Order() {
             onChange={handleUserInput}
             value={orderData.fabric}
           >
-            <option value="" disabled hidden>Choose a fabric</option>
-            {state.fabrics.map((fabric, index) => (
-              <option
-                value={fabric.fabricId.fabric_name}
-                className="text-black"
-                key={index}
-              >
-                {fabric.fabricId.fabric_name}
-              </option>
-            ))}
+            <option value="" selected disabled hidden>Choose a fabric</option>
+            {state.fabrics.map((fabric, index) => {
+              return (
+                <option
+                  value={fabric.fabricId.fabric_name}
+                  className="text-black"
+                  key={index}
+                >
+                  {fabric.fabricId.fabric_name}
+                </option>
+              );
+            })}
           </select>
           <label htmlFor="color" className="text-xl mt-2 font-bold">Color</label>
           <select
@@ -167,11 +113,13 @@ function Order() {
             value={orderData.color}
           >
             <option value="">Choose a color</option>
-            {state.colors.map((color, index) => (
-              <option value={color} className="text-black" key={index}>
-                {color}
-              </option>
-            ))}
+            {state.colors.map((color, index) => {
+              return (
+                <option value={color} className="text-black" key={index}>
+                  {color}
+                </option>
+              );
+            })}
           </select>
           <label htmlFor="rate" className="text-xl mt-2 font-bold">Rate</label>
           <input
@@ -179,27 +127,20 @@ function Order() {
             name="rate"
             className="text-black p-1 rounded"
             id="rate"
-            readOnly
+            onChange={handleUserInput}
             value={orderData.rate}
           />
-          <label htmlFor="length" className="text-xl mt-2 font-bold">Length</label>
-          <input
-            type="number"
-            name="length"
-            className="text-black p-1 rounded"
-            id="length"
-            readOnly
-            value={orderData.length} 
-          />
+
           <label htmlFor="price" className="text-xl mt-2 font-bold ">Price</label>
-          <input
-            type="text"
+          <input 
+            type="text" 
             name="price"
-            className="text-black p-1 rounded"
+            className="text-black p-1 rounded "
             id="price"
-            readOnly
+            onChange={handleUserInput}
             value={orderData.price}
           />
+
           <button
             type="submit"
             className="mt-6 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm px-8 py-2 font-semibold text-lg cursor-pointer"

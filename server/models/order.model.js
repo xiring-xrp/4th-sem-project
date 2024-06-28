@@ -2,16 +2,12 @@ import { Schema, model } from "mongoose";
 const OrderSchema = new Schema({
    userId:{
     type:Schema.Types.ObjectId,
-    ref:'User'
+    ref:'user'
 
    },
    measurementId:{
     type:Schema.Types.ObjectId,
     ref:'Measurement'
-   },
-   clothing:{
-    type:String ,
-    required:true
    },
    clothing_type:{
     type:String ,
@@ -25,14 +21,20 @@ const OrderSchema = new Schema({
     type:String ,
     required:true
    },
+
+   order_status:{
+    type:String,
+    enum:['Processing','Completed'],
+    default:'Processing'
+   },
     status:{
         type:Boolean,
         default:true
 
     },
-    price:{
+    rate:{
         type: String,
-        default: true
+        required:true
     }
 },{timestamps:true});
 

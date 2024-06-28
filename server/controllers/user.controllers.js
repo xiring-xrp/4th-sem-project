@@ -1,8 +1,8 @@
-import AppError from '../utils/error.util.js';
-import User from "../models/user.model.js";
-import cloudinary from 'cloudinary'
+import cloudinary from 'cloudinary';
+import fs from 'fs/promises';
 import sendEmail from 'nodemailer';
-import fs from 'fs/promises'
+import User from "../models/user.model.js";
+import AppError from '../utils/error.util.js';
 
 
 
@@ -15,7 +15,7 @@ const cookieOptions = {
 
 const register = async (req, res, next) => {
     
-    const { fullName, email, password, } = req.body;
+    const { fullName, email, password,phoneNumber } = req.body;
     if (!fullName || !email || !password) {
         return next(new AppError('All fields are required here , 400'));
     }
@@ -29,6 +29,7 @@ const register = async (req, res, next) => {
         fullName,
         email,
         password,
+        phoneNumber,
         avatar: {
             public_id: email,
             secure_url: ''
@@ -94,7 +95,7 @@ const login = async (req, res, next) => {
         if (!email || !password) {
             return next(new AppError('all fields required', 400));
         }
-        const user = await User.findOne({ email }).select('+password');
+        const user = await User.findOne({ email }).populate('measurementId').select('+password');
         if (!user || !user.comparePassword(password)) {
             return next(new AppError('User with given email does not exist', 400))
         }
@@ -140,7 +141,9 @@ const logout = (req, res) => {
 const getProfile = async (req, res, next) => {
     try {
         const userID = req.user.id;
-        const user = await User.findById(userID);
+        const user = await User.findById(userID).populate('measurementId');
+        console.log("Nigam Rai")
+        console.log(user);
 
         res.status(200).json({
             success: true,
@@ -318,14 +321,8 @@ const updateUser = async (req, res,next) => {
 }
 
 export {
-   
-    login,
+    changePassword, forgotPassword, getProfile, login,
     logout,
-    register,
-    forgotPassword,
-    resetPassword,
-    changePassword,
-    updateUser,
-    getProfile
+    register, resetPassword, updateUser
+};
 
-}

@@ -1,5 +1,5 @@
-import {AiFillCloseCircle} from 'react-icons/ai';
-import {FiMenu} from 'react-icons/fi';
+import { AiFillCloseCircle } from 'react-icons/ai';
+import { FiMenu } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -63,28 +63,21 @@ function HomeLayout({ children }) {
                             <Link to="/">Home</Link>
                         </li>
 
-                        {isLoggedIn && role === 'ADMIN' && (
-                            <li>
-                                <Link to="/admin/dashboard"> Admin DashBoard</Link>
-                            </li>
-                        )}
-                        {isLoggedIn && role === 'ADMIN' && (
-                            <li>
-                                <Link to="/course/create"> Create new course</Link>
-                            </li>
-                        )}
+
 
                         <li>
-                            <Link to="/about">About Us</Link>
-                        </li>
-                        
-                        <li>
-                            <Link to="/contact">Contact Us</Link>
+                            <Link to="/about-us">About Us</Link>
                         </li>
 
                         <li>
                             <Link to="/custom-clothing">Custom Clothing</Link>
                         </li>
+                        {isLoggedIn && role === 'USER' && (
+                            <li>
+                                <Link to="/user/order-history">My Orders</Link>
+                            </li>
+                        )}
+
 
 
                         {!isLoggedIn && (

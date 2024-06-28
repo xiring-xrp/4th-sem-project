@@ -4,7 +4,7 @@ import axiosInstance from "../../Helpers/axiosInstance";
 
 const initialState = {
   isLoggedIn: localStorage.getItem("isLoggedIn") || false,
-  data: localStorage.getItem==undefined?JSON.parse(localStorage.getItem("data")):{} || {},
+  data: localStorage.getItem('data')?JSON.parse(localStorage.getItem("data")):{},
   role: localStorage.getItem("role") || "",
 };
 
@@ -74,12 +74,17 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 // function to fetch user data
 export const getUserData = createAsyncThunk("/user/details", async () => {
   try {
-    const res = await axiosInstance.get("/user/me");
-    return res?.data;
+   
+    const res =  axiosInstance.get("/user/me");
+    console.log((await res).data);
+    return (await res).data;
   } catch (error) {
     toast.error(error.message);
   }
 });
+
+
+
 
 // function to change user password
 export const changePassword = createAsyncThunk(
@@ -198,16 +203,16 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.data = {};
       })
+      //for measurement details
       // for user details
       .addCase(getUserData.fulfilled, (state, action) => {
+        console.log("Hi");
         localStorage.setItem("data", JSON.stringify(action?.payload?.user));
-        localStorage.setItem("isLoggedIn", true);
-        state.isLoggedIn = true;
         state.data = action?.payload?.user;
-        state.role = action?.payload?.user?.role;
       });
   },
 });
 
 export const {} = authSlice.actions;
 export default authSlice.reducer;
+console.log(initialState);

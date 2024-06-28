@@ -42,7 +42,12 @@ const Login = () => {
         email: "",
         password: "",
       });
-      navigate("/");
+      if(res?.payload?.user?.role==="ADMIN"){
+        navigate("/admin")
+      }else{
+        navigate("/");
+      }
+      
     }
 
     // clearing the login inputs
