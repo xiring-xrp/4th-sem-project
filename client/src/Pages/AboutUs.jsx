@@ -1,5 +1,8 @@
 import HomeLayout from "../Layouts/HomeLayout";
 import Suit from "../assets/images/about-suit.jpg"
+import Nigam from "../assets/images/nigam.jpg"
+import Suresh from "../assets/images/sureshh.jpg"
+import Naresh from "../assets/images/naresh.jpg"
 
 function AboutUs(){
 
@@ -41,14 +44,14 @@ function AboutUs(){
                         <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                             <div className="flex justify-center">
                                 <a href="#">
-                                    <img className="rounded-full w-[150px]" src={Suit} alt="" />
+                                    <img className="rounded-full w-[150px]" src={Suresh} alt="" />
                                 </a>
                             </div>
                             <div className="p-5">
                                 <a href="#">
-                                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Naresh Shahi Thakuri</h5>
+                                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Suresh Moktan</h5>
                                 </a>
-                                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Suresh Moktan has over 20 years of experience in the tailoring industry. He began his career as an apprentice under a renowned tailor in Italy, where he honed his craft and developed a keen eye for detail.</p>
                             </div>
                         </div>
                     </div>
@@ -57,14 +60,14 @@ function AboutUs(){
                         <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                             <div className="flex justify-center">
                                 <a href="#">
-                                    <img className="rounded-full w-[150px]" src={Suit} alt="" />
+                                    <img className="rounded-full w-[150px]" src={Nigam} alt="" />
                                 </a>
                             </div>
                             <div className="p-5">
                                 <a href="#">
-                                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Naresh Shahi Thakuri</h5>
+                                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Nigam Rai</h5>
                                 </a>
-                                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Nigam Rai has over 20 years of experience in the tailoring industry. He began his career as an apprentice under a renowned tailor in Italy, where he honed his craft and developed a keen eye for detail.</p>
                             </div>
                         </div>
                     </div>
@@ -73,14 +76,14 @@ function AboutUs(){
                         <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                             <div className="flex justify-center">
                                 <a href="#">
-                                    <img className="rounded-full w-[150px]" src={Suit} alt="" />
+                                    <img className="rounded-full w-[150px]" src={Naresh} alt="" />
                                 </a>
                             </div>
                             <div className="p-5">
                                 <a href="#">
                                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Naresh Shahi Thakuri</h5>
                                 </a>
-                                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Naresh Shahi has over 20 years of experience in the tailoring industry. He began his career as an apprentice under a renowned tailor in Italy, where he honed his craft and developed a keen eye for detail.</p>
                             </div>
                         </div>
                     </div>

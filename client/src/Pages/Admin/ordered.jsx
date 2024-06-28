@@ -31,22 +31,21 @@ function Ordered() {
   let count = 0;
   return (
     <AdminLayout>
-      <div className="px-16 bg-[#2E3138] text-white pt-4 py-16">
+      <div className="px-16 bg-[#2E3138] text-white pt-4 py-10">
         <p className="text-center text-yellow-500 text-5xl font-bold">Orders</p>
         <table className="mt-8 border-collapse border-2">
           <thead>
             <tr>
-              <th className="border-2">S.N</th>
-              <th className="border-2">Ordered Date</th>
-              <th className="border-2">Customer Name</th>
-              <th className="border-2">Phone number</th>
-              <th className="border-2 w-[130px]">Clothing type</th>
+              <th className="border-2 w-[40px]">S.N</th>
+              <th className="border-2 w-[120px]">Ordered Date</th>
+              <th className="border-2 w-[100px]">Name</th>
+              <th className="border-2">Phone</th>
+              <th className="border-2 w-[160px]">Clothing type</th>
               <th className="border-2 w-[60px]">Fabric</th>
-              <th className="border-2 w-[60px]">Color</th>
+              <th className="border-2 w-[70px]">Color</th>
               <th className="border-2 w-[60px]">Rate</th>
-              <th className="border-2">Measurements</th>
-              <th className="border-2">Order Status</th>
-              <th className="border-2">Action</th>
+              <th className="border-2 w-[400px]">Measurements</th>
+              <th className="border-2 w-[125px]">Order Status</th>
             </tr>
           </thead>
           <tbody>
@@ -60,8 +59,8 @@ function Ordered() {
                 <td className="border-2 pl-2 font-semibold">{order.fabric}</td>
                 <td className="border-2 pl-2 font-semibold">{order.color}</td>
                 <td className="border-2 pl-2 font-semibold">{order.rate}</td>
-                <td className="border-2 pl-2 font-semibold">
-                  <ul className="grid grid-cols-4 gap-[2px]">
+                <td className="border-2 pl-2 w-[310px] font-semibold">
+                  <ul className="grid grid-cols-2 pl-2">
                     <li>Neck: {order.measurementId.neck}</li>
                     <li>Sleeves Length: {order.measurementId.sleevesLength}</li>
                     <li>Bicep Around: {order.measurementId.bicepAround}</li>
@@ -84,9 +83,6 @@ function Ordered() {
                     <option value="Processing">Processing</option>
                     <option value="Completed">Completed</option>
                   </select>
-                </td>
-                <td>
-                  <button>Delete</button>
                 </td>
               </tr>
             ))}

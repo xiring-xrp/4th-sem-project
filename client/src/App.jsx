@@ -40,8 +40,7 @@ function App() {
       <Route path="/denied" element={<Denied/>}>
 
       </Route>
-      <Route path="*" element={<NotFound/>}>
-
+        <Route path="*" element={<NotFound/>}>
       </Route>
       <Route element = {<RequireAuth  allowedRoles={["ADMIN"]} />}>
         <Route path="/admin/profile" element={<Profile />}></Route>

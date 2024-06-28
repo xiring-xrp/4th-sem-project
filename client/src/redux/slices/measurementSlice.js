@@ -26,7 +26,7 @@ const measurementSlice=createSlice({
 })
 export const getMeasurementData = createAsyncThunk("/user/measurements", async () => {
     console.log("Hello");
-    const res = axiosInstance.get("/measurement/getMeasurement");
+    const res = axiosInstance.get("/measuremen                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      t/getMeasurement");
      console.log((await res).data.measurement)
     return (await res)?.data.measurement;
 })

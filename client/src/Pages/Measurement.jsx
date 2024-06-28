@@ -58,8 +58,9 @@ function Measurement() {
 
     return (
         <HomeLayout>
-            <div className="py-20 px-16 bg-[#2e3138] text-white">
-                <form noValidate onSubmit={createNewMeasurement} className="grid grid-cols-3">
+            <div className="py-20 px-16  bg-[#2e3138] text-white">
+                <div className="">
+                <form noValidate onSubmit={createNewMeasurement} className="grid grid-cols-2 mt-[50px] ml-[250px]">
                     <div className="ml-20 grid grid-cols-2">
                         <div>
                             <div>
@@ -204,8 +205,12 @@ function Measurement() {
                             </div>
                         </div>
                     </div>
-                    <button type="submit" className="mt-8 ml-20 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded px-2 py-2 font-semibold text-lg cursor-pointer">Confirm Measurement</button>
+                    <div>
+                        <button type="submit" className="ml-[200px] mt-10 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded px-2 py-2 font-semibold text-lg cursor-pointer">Confirm Measurement</button>
+                    </div>
                 </form>
+                </div>
+                
             </div>
         </HomeLayout>
     );
