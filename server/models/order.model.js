@@ -35,7 +35,13 @@ const OrderSchema = new Schema({
     rate:{
         type: String,
         required:true
+    },
+    price:{
+        type:String ,
+        required: true
     }
+
+
 },{timestamps:true});
 
 const Order = model('Order', OrderSchema );

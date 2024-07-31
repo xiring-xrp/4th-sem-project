@@ -2,8 +2,8 @@ import Order from "../models/order.model.js";
 import AppError from "../utils/error.util.js";
 
 const makeOrder = async (req , res , next) =>{
-    const {userId,measurementId, clothing_type,fabric, color, rate} = req.body
-    if(  !clothing_type || !fabric || !color ) {
+    const {userId,measurementId, clothing_type,fabric, color, rate,price} = req.body
+    if(  !clothing_type || !fabric || !color ||!price ) {
         return next (
             new AppError (" all field are required",400)
         )
@@ -15,6 +15,7 @@ const makeOrder = async (req , res , next) =>{
             fabric,
             color,
             rate,
+            price,
             measurementId
             
         })
