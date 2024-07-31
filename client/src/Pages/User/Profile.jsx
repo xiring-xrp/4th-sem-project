@@ -5,6 +5,13 @@ import HomeLayout from "../../Layouts/HomeLayout";
 import { getUserData } from "../../redux/slices/authSlice";
 
 function Profile() {
+
+    // for checking if user is logged in
+    const isLoggedIn = useSelector((state) => state?.auth?.isLoggedIn);
+
+    // for displaying the options acc to role
+    const role = useSelector((state) => state?.auth?.role);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const userData = useSelector((state) => state?.auth?.data);
@@ -53,29 +60,44 @@ function Profile() {
                         )}
                     </div>
                     <div className="flex items-center justify-between gap-2">
-                        {!userData?.measurementId ? (
-                            <Link
-                                to="/measurement/add"
-                                className="w-1/2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-2 cursor-pointer text-center"
-                            >
-                                <button>Add Measurement</button>
-                            </Link>
-                        ) : (
-                            <Link
-                                to="/edit-measurement"
-                                className="w-1/2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-2 cursor-pointer text-center"
-                            >
-                                <button>Edit Measurement</button>
-                            </Link>
+                        {isLoggedIn && role === "USER" && (
+                            <div className="">
+                            {!userData?.measurementId ? (
+                                <Link
+                                    to="/measurement/add"
+                                    className="w-1/2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-2 cursor-pointer text-center"
+                                >
+                                    <button>Add Measurement</button>
+                                </Link>
+                            ) : (
+                                <Link
+                                    to="/edit-measurement"
+                                    className="px-5 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-2.5 cursor-pointer text-center"
+                                >
+                                    <button>Edit Measurement</button>
+                                </Link>
+                            )}
+                            </div>
                         )}
-                    </div>
-                    <div className="flex items-center justify-between gap-2">
-                        <Link
+                        
+                        {isLoggedIn && role === "USER" && (
+                            <Link
                             to="/user/editprofile"
                             className="w-1/2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-2 cursor-pointer text-center"
-                        >
+                            >
                             <button>Edit profile</button>
-                        </Link>
+                            </Link>
+                        )}
+
+                        {isLoggedIn && role === "ADMIN" && (
+                            <Link
+                            to="/admin/editprofile"
+                            className="w-1/2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-3 cursor-pointer text-center"
+                            >
+                            <button>Edit profile</button>
+                            </Link>
+                        )}
+
                     </div>
                 </div>
             </div>

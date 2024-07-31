@@ -26,37 +26,46 @@ function OrderHistory(){
     let count=0;
     return(
         <HomeLayout>
-            <div className="px-16 bg-[#2E3138] text-white pt-4 py-16">
+            <div className="px-16 bg-[#2E3138] h-[100vh] text-white pt-15 py-16">
                 <p className="text-center text-yellow-500 text-5xl font-bold">Order History</p>
-                <table className="mt-8 border-collapse border-2">
+                <div  className="flex justify-center">
+                <table className="mt-10 border-collapse border-2">
                     <thead>
-                        <tr>
-                            <th className="border-2 ">S.N</th>
-                            <th className="border-2">Ordered Date</th>
-                            <th className="border-2 w-[130px]">Clothing type</th>
-                            <th className="border-2 w-[60px]">Fabric</th>
-                            <th className="border-2 w-[60px]">Color</th>
-                            <th className="border-2 w-[60px]">Rate</th>
-                            <th className="border-2 w-[60px]">Order Status</th>
+                        <tr className="h-[50px]">
+                            <th className="border-2 w-[50px] ">S.N</th>
+                            <th className="border-2 w-[200px]">Ordered Date</th>
+                            <th className="border-2 w-[200px]">Clothing type</th>
+                            <th className="border-2 w-[100px]">Fabric</th>
+                            <th className="border-2 w-[100px]">Color</th>
+                            <th className="border-2 w-[100px]">Rate</th>
+                            <th className="border-2 w-[200px]">Order Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {
-                    orderData.map((order,index)=>{
-                    console.log(orderData);
-                            return <tr key={index}>
-                                <td className="border-2 pl-2 font-semibold">{++count}</td>
-                                <td className="border-2 pl-2 font-semibold">{formatDate(order.createdAt)}</td>
-                                <td className="border-2 pl-2 font-semibold">{order.clothing_type}</td>
-                                <td className="border-2 pl-2 font-semibold">{order.fabric}</td>
-                                <td className="border-2 pl-2 font-semibold">{order.color}</td>
-                                <td className="border-2 pl-2 font-semibold">{order.rate}</td>
-                                <td className="border-2 pl-2 font-semibold">{order.order_status}</td>
-                            </tr>
-                        })
+                    {orderData&&orderData.length>0?
+                    (
+                        orderData.map((order,index)=>{
+                            console.log(orderData);
+                                    return <tr key={index}>
+                                        <td className="h-[40px] border pl-2 font-semibold">{++count}</td>
+                                        <td className="h-[40px] border-2 pl-2 font-semibold">{formatDate(order.createdAt)}</td>
+                                        <td className="h-[40px] border-2 pl-2 font-semibold">{order.clothing_type}</td>
+                                        <td className="h-[40px] border-2 pl-2 font-semibold">{order.fabric}</td>
+                                        <td className="h-[40px] border-2 pl-2 font-semibold">{order.color}</td>
+                                        <td className="h-[40px] border-2 pl-2 font-semibold">{order.rate}</td>
+                                        <td className="h-[40px] border-2 pl-2 font-semibold">{order.order_status}</td>
+                                    </tr>
+                                })
+                    ):(
+                        <tr>
+                            <td>you</td>
+                            <td>have no orders</td>
+                        </tr>
+                    )
                     }
                     </tbody>
                 </table>
+                </div>
             </div>
         </HomeLayout>
     )

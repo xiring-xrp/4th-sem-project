@@ -17,7 +17,7 @@ function ClothingCategoryList() {
                     state.clothing_category.map((clothing) => {
                         return <div className="flex flex-col bg-white rounded-lg shadow-md w-full m-6 overflow-hidden sm:w-80">
                             <img src={clothing.thumbnail.secure_url} alt={`${clothing.clothing_type} image`} className="h-[70vh]" />
-                            <button className="bg-yellow-500 text-white p-3 font-bold text-center hover:bg-yellow-600 transition-all duration-500" onClick={() => navigate('/custom-clothing/clothing-categories-list/details', { state: { ...clothing } })}>{clothing.clothing_type}</button>
+                            <button className="bg-yellow-500 text-white p-3 font-bold text-center hover:bg-yellow-600 transition-all duration-500" onClick={() => navigate(`/custom-clothing/clothing-categories-list/details/${state.clothing}`, { state: { ...clothing } })}>{clothing.clothing_type}</button>
                         </div>
                     })
                 }
